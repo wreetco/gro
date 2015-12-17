@@ -15,9 +15,19 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+// setting some of the default colors
+$dark: #273947 !default;
+$calm: #50FFB1 !default;
+$main-bg: #263039 !default;
+
+// a few basic element overrides etc
+$base-background-color: $main-bg;
+$base-color: #fff;
+$item-dark-bg: $main-bg; // sets the color of list items
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
+@import "styles";
 @import "www/lib/ionic/scss/ionic";
-

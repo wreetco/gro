@@ -50,12 +50,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.notifications', {
+      url: '/notifications',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-notifications': {
+          templateUrl: 'templates/tab-notifications.html',
+          controller: 'NotificationsCtrl'
         }
       }
     })
@@ -77,7 +77,49 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.plants', {
+    url: '/plants',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/plants-overview.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  .state('tab.schedule', {
+    url: '/schedule',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/schedule.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  .state('tab.notes', {
+    url: '/notes',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/notes.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  .state('tab.equipment', {
+    url: '/equipment',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/equipment.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  ; // end stateProvider
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
