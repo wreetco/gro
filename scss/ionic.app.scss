@@ -24,6 +24,7 @@ $main-bg: #263039 !default;
 $base-background-color: $main-bg;
 $base-color: #fff;
 $item-dark-bg: $main-bg; // sets the color of list items
+$card-body-bg: $dark; // the card background color
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;

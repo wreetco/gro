@@ -6,10 +6,43 @@
   text-align: center;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .stat-window i:first-child {
   font-size: 3em;
 }
 
 .stat-window p {
   margin-top: 10px;
+}
+
+.plant-status-row i {
+  font-size: 3em;
+}
+
+.plant-item {
+
+}
+
+.plant-item-status-bar:before {
+  content: "";
+  //background: #34E2E2;
+  background: $calm;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 38%;
+}
+
+.plant-item-status-bar.status-yellow:before {
+  background: yellow !important;
+}
+
+
+
+.plant-item-last-log {
+  font-size: 1em !important;
 }
