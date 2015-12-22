@@ -1,17 +1,17 @@
 <ion-view view-title="Notes">
   <ion-content class="">
     <ion-list>
-      <ion-item class="item-remove-animate item-dark item-avatar item-icon-right" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+      <ion-item class="item-remove-animate item-dark item-avatar item-icon-right" ng-repeat="note in notes" type="item-text-wrap" href="#/tab/notes/{{note.id}}">
         <!--<img ng-src="{{chat.face}}">-->
         <i class="icon ion-clipboard calm item-image"></i>
-        <h2>Note title</h2>
+        <h2>{{ note.title }}</h2>
         <p>
-          Some text from the note.
+          {{ note.text }}
           <br />
-          12/5/15
+          {{ note.created_date }}
         </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        <ion-option-button class="button-assertive" ng-click="remove(note)">
           Delete
         </ion-option-button>
       </ion-item>

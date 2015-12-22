@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('NotificationsCtrl', function($scope, Chats) {
+.controller('NotificationsCtrl', function($scope, Notifications) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -11,9 +11,11 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+
+
+  $scope.notifications = Notifications.all();
+  $scope.remove = function(notification) {
+    Notifications.remove(notification);
   };
 })
 
@@ -25,4 +27,22 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('NotesCtrl', function($scope, Notes) {
+  $scope.notes = Notes.all();
+
+  $scope.remove = function(note) {
+    Notes.remove(note);
+  }
+
+})
+
+// note view control
+.controller('NoteViewCtrl', function($scope, $stateParams, Notes) {
+  $scope.note = Notes.get($stateParams.note_id);
+})
+
+
+
+;

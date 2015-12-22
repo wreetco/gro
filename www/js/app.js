@@ -104,7 +104,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-dash': {
         templateUrl: 'templates/notes.html',
-        controller: 'AccountCtrl'
+        controller: 'NotesCtrl'
+      }
+    }
+  })
+
+  .state('tab.note-show', {
+    url: '/notes/:note_id',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/note_show.html',
+        controller: 'NoteViewCtrl'
       }
     }
   })

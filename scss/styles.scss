@@ -11,7 +11,7 @@
 }
 
 .stat-window i:first-child {
-  font-size: 3em;
+  font-size: 4em;
 }
 
 .stat-window p {
@@ -22,19 +22,22 @@
   font-size: 3em;
 }
 
-.plant-item {
-
+.plant-item:nth-child(odd) {
+  border-right: 1px solid rgba(70, 70, 70, .65);
 }
 
 .plant-item-status-bar:before {
   content: "";
-  //background: #34E2E2;
   background: $calm;
   position: absolute;
   top: 0;
   left: 0;
   height: 3px;
   width: 38%;
+}
+
+.plant-item .item {
+  border: 0;
 }
 
 .plant-item-status-bar.status-yellow:before {
