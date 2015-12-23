@@ -22,8 +22,13 @@
   font-size: 3em;
 }
 
+.plant-item {
+  position: relative;
+}
+
 .plant-item:nth-child(odd) {
   border-right: 1px solid rgba(70, 70, 70, .65);
+  position: relative;
 }
 
 .plant-item-status-bar:before {
@@ -38,6 +43,15 @@
 
 .plant-item .item {
   border: 0;
+}
+
+.plant-item .plant-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
 }
 
 .plant-item-status-bar.status-yellow:before {
