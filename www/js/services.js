@@ -72,6 +72,42 @@ angular.module('starter.services', [])
 })
 // end it
 
+// plants factory yall
+.factory('Plants', function() {
+  var plants = [
+    {
+      id: 1,
+      strain: 'B-Rad Dadband Kitty Edition',
+      planted_date: '11/02/2015',
+      img: 'https://www.thefix.com/cdn/farfuture/NFan5y-anO4zkD8EMMXNruRzLt5DTGbqhw4F2uxsCIw/mtime:1433708002/sites/default/files/styles/article/public/budding%20weed%20plant.jpg'
+    },
+    {
+      id: 2,
+      strain: 'Bradhdadi Thunderfuck Kush',
+      planted_date: '11/02/2015',
+      img: 'http://www.growweedeasy.com/sites/growweedeasy.com/files/nitogen-deficient-flowering.jpg'
+    }
+  ];
+
+  return {
+    all: function() {
+     return plants;
+    },
+    remove: function(plant) {
+      notes.splice(notes.indexOf(plant), 1);
+    },
+    get: function(plant_id) {
+      for (var i = 0; i < plants.length; i++) {
+        if (plants[i].id === parseInt(plant_id)) {
+          return plants[i];
+        }
+      }
+      return null;
+    }
+  }
+
+})
+// end it
 
 
 

@@ -29,6 +29,7 @@ angular.module('starter.controllers', [])
   };
 })
 
+// notes shizznit
 .controller('NotesCtrl', function($scope, Notes) {
   $scope.notes = Notes.all();
 
@@ -36,13 +37,27 @@ angular.module('starter.controllers', [])
     Notes.remove(note);
   }
 
-})
+}) // end notesCtrl
 
 // note view control
 .controller('NoteViewCtrl', function($scope, $stateParams, Notes) {
   $scope.note = Notes.get($stateParams.note_id);
-})
+}) // end the notviewctrl
 
+// plants controllers
+.controller('PlantsCtrl', function($scope, Plants) {
+  $scope.plants = Plants.all();
+
+  $scope.remove = function(plant) {
+    Plants.remove(plant);
+  }
+
+}) // end plantsctrl
+
+// plant view control
+.controller('PlantViewCtrl', function($scope, $stateParams, Plants) {
+  $scope.plant = Plants.get($stateParams.plant_id);
+}) // end the plantviewctrl
 
 
 ;

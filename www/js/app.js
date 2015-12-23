@@ -84,7 +84,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-dash': {
         templateUrl: 'templates/plants-overview.html',
-        controller: 'AccountCtrl'
+        controller: 'PlantsCtrl'
+      }
+    }
+  })
+
+  .state('tab.plant-show', {
+    url: '/plants/:plant_id',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/plant_show.html',
+        controller: 'PlantViewCtrl'
       }
     }
   })
