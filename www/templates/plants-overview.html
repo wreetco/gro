@@ -10,13 +10,13 @@
 
       <div class="col col-50 plant-item" ng-repeat="plant in plants">
         <a href="#/tab/plants/{{ plant.id }}" class="plant-link"></a>
-        <div class="item item-dark plant-item-status-bar">{{ plant.strain }}</div>
+        <div class="item item-dark plant-item-status-bar {{ (plant.status) ? plant.status : null }}">{{ plant.strain }}</div>
         <div class="item item-dark item-image">
           <img ng-src="{{ plant.img }}" alt="weed yall">
         </div><!-- end image item div -->
         <div class="item item-dark item-icon-left plant-item-last-log">
           <i class="icon ion-ios-paper-outline calm"></i>
-          {{ plant.planted_date }}
+          {{ plant.last_journal }}
         </div>
       </div>
 
