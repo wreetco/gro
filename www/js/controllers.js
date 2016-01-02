@@ -50,8 +50,15 @@ angular.module('starter.controllers', [])
 .controller('PlantsCtrl', function($scope, Plants) {
   $scope.plants = Plants.all();
 
+  // delete a plant
   $scope.remove = function(plant) {
     Plants.remove(plant);
+  } // end remove method
+
+  // add a plant
+  $scope.new_plant = {};
+  $scope.savePlant = function() {
+    Plants.save($scope.new_plant);
   }
 
 }) // end plantsctrl

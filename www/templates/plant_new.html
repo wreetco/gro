@@ -4,20 +4,20 @@
       <div class="list">
         <label class="item item-dark item-input item-floating-label">
           <span class="input-label">Strain</span>
-          <input type="text" placeholder="Strain">
+          <input type="text" placeholder="Strain" ng-model="new_plant.strain">
         </label>
         <label class="item item-dark item-input item-floating-label">
           <span class="input-label">Plant Date</span>
-          <input type="text" placeholder="Plant Date">
+          <input type="text" placeholder="Plant Date" ng-model="new_plant.planted_date">
         </label>
         <label class="item item-dark item-input item-floating-label">
           <span class="input-label">Image</span>
-          <input type="text" placeholder="Image">
+          <input type="text" placeholder="Image" ng-model="new_plant.plant_image">
         </label>
 
         <br />
         <div class="center-text">
-          <button class="button button-calm">
+          <button class="button button-calm" ng-click="savePlant()">
             <span class="dark">Save</span>
           </button>
         </div>

@@ -104,7 +104,10 @@ angular.module('starter.services', [])
         }
       }
       return null;
-    }
+    },
+    save: function(plant) {
+      console.log(plant);
+    } // end save
   }
 
 })
