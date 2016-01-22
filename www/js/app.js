@@ -23,6 +23,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
+.config(function ($httpProvider) {
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -135,6 +142,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'tab-dash': {
         templateUrl: 'templates/note_show.html',
         controller: 'NoteViewCtrl'
+      }
+    }
+  })
+
+  .state('tab.new-note', {
+    url: '/note/:note_new',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/note_new.html',
+        controller: 'NotesCtrl'
       }
     }
   })

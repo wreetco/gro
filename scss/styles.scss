@@ -58,8 +58,30 @@
   background: yellow !important;
 }
 
-
-
 .plant-item-last-log {
   font-size: 1em !important;
 }
+
+.floating-action-button {
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  border-radius: 3em;
+  text-align: center;
+  background-color: $calm;
+  color: $dark;
+}
+
+.floating-action-button .icon {
+  font-size: 1.5em;
+}
+
+textarea.dark {
+  background-color: $main-bg;
+  min-height: 3em;
+}
+
+

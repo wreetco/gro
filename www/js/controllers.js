@@ -32,12 +32,20 @@ angular.module('starter.controllers', [])
 })
 
 // notes shizznit
-.controller('NotesCtrl', function($scope, Notes) {
+.controller('NotesCtrl', function($scope, $state, Notes) {
   $scope.notes = Notes.all();
 
   $scope.remove = function(note) {
     Notes.remove(note);
-  }
+  } // end remove
+
+  $scope.new_note = {};
+  $scope.saveNote = function(note) {
+    Notes.save($scope.new_note).then(function(res) {
+      console.log('from the then');
+      console.log(res);
+    });
+  } // end save
 
 }) // end notesCtrl
 
@@ -47,8 +55,14 @@ angular.module('starter.controllers', [])
 }) // end the notviewctrl
 
 // plants controllers
-.controller('PlantsCtrl', function($scope, Plants) {
+.controller('PlantsCtrl', function($scope, $state, Plants, Camera) {
   $scope.plants = Plants.all();
+
+  // update view
+  $scope.refresh = function() {
+    $scope.plants = Plants.all();
+    $scope.$broadcast('scroll.refreshComplete');
+  }
 
   // delete a plant
   $scope.remove = function(plant) {
@@ -58,8 +72,22 @@ angular.module('starter.controllers', [])
   // add a plant
   $scope.new_plant = {};
   $scope.savePlant = function() {
-    Plants.save($scope.new_plant);
+    Plants.save($scope.new_plant).then(function(res) {
+      console.log('from the then');
+      console.log(res);
+      $state.go('tab.plants');
+    });
   }
+
+  // plants need a photo
+  $scope.takePhoto = function() {
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+    }, function(err) {
+      console.err(err);
+    });
+  } // end take photo
+
 
 }) // end plantsctrl
 

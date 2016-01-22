@@ -1,0 +1,23 @@
+<ion-view view-title="New Note">
+  <ion-content class="">
+    <div id="add-note">
+      <div class="list">
+        <label class="item item-dark item-input item-floating-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="Title" ng-model="new_note.title">
+        </label>
+        <label class="item item-dark item-input">
+          <textarea class="dark" placeholder="Text" ng-model="new_note.text"></textarea>
+        </label>
+
+        <br />
+        <div class="center-text">
+          <button class="button button-calm" ng-click="saveNote()">
+            <span class="dark">Save</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

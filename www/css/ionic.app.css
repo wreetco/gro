@@ -66,6 +66,25 @@ $dark:                            #444 !default;
 .plant-item-last-log {
   font-size: 1em !important; }
 
+.floating-action-button {
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  border-radius: 3em;
+  text-align: center;
+  background-color: #50ff88;
+  color: #151f26; }
+
+.floating-action-button .icon {
+  font-size: 1.5em; }
+
+textarea.dark {
+  background-color: #12161a;
+  min-height: 3em; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
