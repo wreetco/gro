@@ -96,5 +96,12 @@ angular.module('starter.controllers', [])
   $scope.plant = Plants.get($stateParams.plant_id);
 }) // end the plantviewctrl
 
+// equipment view controller
+.controller('EquipmentViewCtrl', function($scope) {
+  
+})
+// end the equipment view controller
+
+
 
 ;
