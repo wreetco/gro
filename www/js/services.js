@@ -1,38 +1,20 @@
 angular.module('starter.services', [])
 
-.factory('Notifications', function() {
+.factory('Notifications', function($http) {
   // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var notifications = [
-    {
-      title: "PH",
-      created_date: "12/19/15 3:21PM",
-      text: "Bradhdadi Kush PH low - 6.0"
-    },
-    {
-      title: "Moisture",
-      created_date: "12/18/15 11:19AM",
-      text: "B-Rad Headband soil is dry"
-    }
-  ]
-
   return {
-    all: function() {
-      return notifications;
-    },
-    remove: function(notification) {
+    all: function($scope) {
+      console.log('hit notifications.all');
+			$http.get('http://grast.wreet.co/56b55a2de449852a75000000/notifications').success(function(data, status) {
+				$scope.notifications = data;
+				console.log('we did it, hopefully');
+				console.log(data);
+    	});
+  	},
+    remove: function($scope, notification) {
       notifications.splice(notifications.indexOf(notification), 1);
-    },
-    get: function(notificationId) {
-      for (var i = 0; i < notifications.length; i++) {
-        if (notifications[i].id === parseInt(notificationId)) {
-          return notifications[i];
-        }
-      }
-      return null;
     }
-  };
+	}
 })
 
 // notes factory yall

@@ -12,13 +12,18 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-
-
-  $scope.notifications = Notifications.all();
+	$scope.notifications = Notifications.all($scope);
+	 
+	// update view
+  $scope.refresh = function($scope) {
+    $scope.notifications = Notifications.all($scope);
+    $scope.$broadcast('scroll.refreshComplete');
+	}	
+  // delete a notification
   $scope.remove = function(notification) {
     Notifications.remove(notification);
-  };
+  } // end remove method
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

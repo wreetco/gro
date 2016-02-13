@@ -6,9 +6,10 @@
         <i class="icon ion-alert assertive item-image"></i>
         <h2>{{ notification.title }}</h2>
         <p>
-          {{ notification.text }}
+          {{ notification.text_field }}
           <br />
           {{ notification.created_date }}
+					<!-- {{ notification._id.$oid }} -->
         </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
         <ion-option-button class="button-assertive" ng-click="remove(notification)">
