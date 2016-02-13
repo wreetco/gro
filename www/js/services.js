@@ -113,10 +113,15 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-     return plants;
-    },
+      console.log('hit plants.all');
+      $http.get("http://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
+        console.log('we did it');
+        console.log(data);
+      });
+    }, // end all method
+    
     remove: function(plant) {
-      notes.splice(plants.indexOf(plant), 1);
+      plants.splice(plants.indexOf(plant), 1);
     },
     get: function(plant_id) {
       for (var i = 0; i < plants.length; i++) {
