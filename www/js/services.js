@@ -8,7 +8,7 @@ angular.module('starter.services', [])
     {
       title: "PH",
       created_date: "12/19/15 3:21PM",
-      text: "Bradhdadi Thunderfuck Kush PH low - 6.0"
+      text: "Bradhdadi Kush PH low - 6.0"
     },
     {
       title: "Moisture",
@@ -40,15 +40,15 @@ angular.module('starter.services', [])
   var notes = [
     {
       id: 1,
-      title: 'This is a note LOL',
+      title: 'Observations from new low stress training',
       created_date: '12/15/2015',
-      text: 'Hello. I like to be a note. Don\'t put me outside.'
+      text: 'Plants seem to be responding well, lots of new growth.'
     },
     {
       id: 2,
-      title: 'I live in Denver Duke!',
+      title: 'Hollands Hope plant problems',
       created_date: '12/12/2015',
-      text: 'No kitty that\'s a bad kitty that\'s my pot pie.'
+      text: 'It would appear the Hollands Hope plant is experiencing nute lock.'
     }
   ];
 
@@ -116,13 +116,15 @@ angular.module('starter.services', [])
       id: 1,
       strain: 'B-Rad Dadband Kitty Edition',
       last_journal: '12/22/2015',
-      img: 'https://www.thefix.com/cdn/farfuture/NFan5y-anO4zkD8EMMXNruRzLt5DTGbqhw4F2uxsCIw/mtime:1433708002/sites/default/files/styles/article/public/budding%20weed%20plant.jpg'
+      img: './img/budding weed plant.jpg'
+      //img:'https://www.thefix.com/cdn/farfuture/NFan5y-anO4zkD8EMMXNruRzLt5DTGbqhw4F2uxsCIw/mtime:1433708002/sites/default/files/styles/article/public/budding%20weed%20plant.jpg'
     },
     {
       id: 2,
-      strain: 'Bradhdadi Thunderfuck Kush',
+      strain: 'Bradhdadi Kush',
       last_journal: '12/12/2015',
-      img: 'http://www.growweedeasy.com/sites/growweedeasy.com/files/nitogen-deficient-flowering.jpg',
+      img: './img/nitogen-deficient-flowering.jpg',
+      //img: 'http://www.growweedeasy.com/sites/growweedeasy.com/files/nitogen-deficient-flowering.jpg'
       status: 'status-yellow'
     }
   ];
