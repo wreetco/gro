@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
 
 // plants controllers
 .controller('PlantsCtrl', function($scope, $state, Plants, Camera) {
-  $scope.plants = Plants.all();
+  $scope.plants = Plants.all($scope);
 
   // update view
   $scope.refresh = function() {
@@ -93,7 +93,12 @@ angular.module('starter.controllers', [])
 
 // plant view control
 .controller('PlantViewCtrl', function($scope, $stateParams, Plants) {
-  $scope.plant = Plants.get($stateParams.plant_id);
+  $scope.plant = Plants.get($scope, $stateParams.plant_id);
+  
+  $scope.lol = function() {
+    console.log('plant is');
+    console.log($scope.plant)
+  }
 }) // end the plantviewctrl
 
 // equipment view controller

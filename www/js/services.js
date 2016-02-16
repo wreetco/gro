@@ -130,25 +130,37 @@ angular.module('starter.services', [])
   ];
 
   return {
-    all: function() {
-      console.log('hit plants.all');
+    all: function($scope) {
       $http.get("http://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
-        console.log('we did it');
-        console.log(data);
+        var plants = [];
+        var row = [];
+        for (var i = 0; i < data.length; i++) {
+          if (i % 2 != 0) {
+            row.push(data[i]);
+            plants.push(row);
+            row = [];
+          }
+          else {
+            row.push(data[i]);
+          }
+        }
+        $scope.plants = plants;
       });
     }, // end all method
     
     remove: function(plant) {
       plants.splice(plants.indexOf(plant), 1);
     },
-    get: function(plant_id) {
-      for (var i = 0; i < plants.length; i++) {
-        if (plants[i].id === parseInt(plant_id)) {
-          return plants[i];
+    get: function($scope, plant_id) {
+      $http.get("http://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]._id.$oid == plant_id) {
+            $scope.plant = data[i];
+          }
         }
-      }
-      return null;
+      });
     },
+    
     save: function(plant) {
       var d = $q.defer();
       // post the plant
