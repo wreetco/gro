@@ -84,4 +84,12 @@ textarea.dark {
   min-height: 3em;
 }
 
-
+.plant-view-status {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  height: 40px;
+  width: 40px;
+  
+  border: 1px solid orange;
+}

@@ -5,7 +5,7 @@ angular.module('starter.services', [])
   return {
     all: function($scope) {
       console.log('hit notifications.all');
-			$http.get('http://grast.wreet.co/56b55a2de449852a75000000/notifications').success(function(data, status) {
+			$http.get('https://grast.wreet.co/56b55a2de449852a75000000/notifications').success(function(data, status) {
 				$scope.notifications = data;
 				console.log('we did it, hopefully');
 				console.log(data);
@@ -113,7 +113,7 @@ angular.module('starter.services', [])
 
   return {
     all: function($scope) {
-      $http.get("http://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
+      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
         var plants = [];
         var row = [];
         for (var i = 0; i < data.length; i++) {
@@ -134,7 +134,7 @@ angular.module('starter.services', [])
       plants.splice(plants.indexOf(plant), 1);
     },
     get: function($scope, plant_id) {
-      $http.get("http://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
+      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
         for (var i = 0; i < data.length; i++) {
           if (data[i]._id.$oid == plant_id) {
             $scope.plant = data[i];

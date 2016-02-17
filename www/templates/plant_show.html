@@ -1,6 +1,34 @@
 <ion-view view-title="{{ plant.strain }}">
   <ion-content>
-    {{ plant.strain }}
-    <button ng-click="lol()">fd</button>
+    
+    <div class="list cardk">
+      <div class="item item-dark item-avatar">
+        
+        <!--<img src="mcfly.jpg">-->
+        <span class="plant-view-status">jjk</span>
+        
+        <h2>{{ plant.strain }}</h2>
+        <p>{{ plant.date_planted }}</p>
+      </div>
+    
+      <div class="item item-dark item-body stable">
+        <img class="full-image" src="./img/budding weed plant.jpg">
+        <p>
+          Blue Dream, a sativa-dominant hybrid originating in California, has achieved 
+          legendary status among West Coast strains. Crossing a Blueberry indica with the 
+          sativa Haze, Blue Dream balances full-body relaxation with gentle cerebral 
+          invigoration. Novice and veteran consumers alike enjoy the level effects of 
+          Blue Dream, which ease you gently into a calm euphoria. Some Blue Dream 
+          phenotypes express a more indica-like look and feel, but the sativa-leaning 
+          variety remains most prevalent.
+        </p>
+        <p>
+          <a href="#" class="subdued">1 Notification</a>
+          <a href="#" class="subdued">5 Journals</a>
+        </p>
+      </div>
+    </div><!-- end the card -->
+    
+    
   </ion-content>
 </ion-view>
