@@ -35,31 +35,24 @@ angular.module('starter.services', [])
   ];
 
   return {
-    all: function() {
-     return notes;
+    all: function($scope) {
+      $http.get('https://grast.wreet.co/56b55a2de449852a75000000/notes').success(function(data, status) {
+  			$scope.notes = data;
+  			console.log('we did it, hopefully');
+  			console.log(data);
+    	});
     },
     remove: function(note) {
       notes.splice(notes.indexOf(note), 1);
     },
-    get: function(note_id) {
-      /*
-      for (var i = 0; i < notes.length; i++) {
-        if (notes[i].id === parseInt(note_id)) {
-          return notes[i];
+    get: function($scope, note_id) {
+      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/notes").success(function(data, status) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]._id.$oid == note_id) {
+            $scope.note = data[i];
+          }
         }
-      }
-      return null;
-      */
-      var d = $q.defer();
-
-      $http.get("http://192.168.1.140:4567/567893cec6f3605725000001/notes").success(function(data, status) {
-        d.resolve({
-          "data": data,
-          "status": status
-        });
       });
-
-      return d.promise;
     },
     save: function(note) {
       var d = $q.defer();

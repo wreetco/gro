@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
 
 // notes shizznit
 .controller('NotesCtrl', function($scope, $state, Notes) {
-  $scope.notes = Notes.all();
+  $scope.notes = Notes.all($scope);
 
   $scope.remove = function(note) {
     Notes.remove(note);
@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
 
 // note view control
 .controller('NoteViewCtrl', function($scope, $stateParams, Notes) {
-  $scope.note = Notes.get($stateParams.note_id);
+  $scope.note = Notes.get($scope, $stateParams.note_id);
 }) // end the notviewctrl
 
 // plants controllers

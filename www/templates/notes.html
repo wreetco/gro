@@ -1,7 +1,7 @@
 <ion-view view-title="Notes">
   <ion-content class="">
     <ion-list>
-      <ion-item class="item-remove-animate item-dark item-avatar item-icon-right" ng-repeat="note in notes" type="item-text-wrap" href="#/tab/notes/{{note.id}}">
+      <ion-item class="item-remove-animate item-dark item-avatar item-icon-right" ng-repeat="note in notes" type="item-text-wrap" href="#/tab/notes/{{note._id.$oid}}">
         <!--<img ng-src="{{chat.face}}">-->
         <i class="icon ion-clipboard calm item-image"></i>
         <h2>{{ note.title }}</h2>
