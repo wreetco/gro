@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Plants) {
-  $scope.plants = Plants.all();
+  $scope.plants = Plants.all($scope);
 })
 
 .controller('NotificationsCtrl', function($scope, Notifications) {
