@@ -17,10 +17,10 @@
         <div class="item item-dark item-image">
           <img ng-src="{{ plant.img }}" alt="weed yall">
         </div><!-- end image item div -->
-        <div class="item item-dark item-icon-left plant-item-last-log">
-          <i class="icon ion-ios-paper-outline calm"></i>
-          {{ plant.date_planted }}
-        </div>
+        <p class="plant-footer">
+          <a href="#" class="subdued">{{ plant.notifications.length }} <i class="icon ion-ios-information-outline"></i></a>
+          <a href="#" class="subdued">5 <i class="icon ion-ios-paper-outline"></i></a>
+        </p>
       </div>
     </div><!-- end row -->
 
