@@ -107,8 +107,18 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentViewCtrl', function($scope) {
-  
+.controller('EquipmentViewCtrl', function($scope, Equipment) {
+  $scope.equipment = Equipment.all($scope);
+	 
+	// update view
+  $scope.refresh = function($scope) {
+    $scope.equipment = Equipment.all($scope);
+    $scope.$broadcast('scroll.refreshComplete');
+	}	
+  // delete a notification
+  $scope.remove = function(equipment) {
+    Equipment.remove(equipment);
+  } // end remove method
 })
 // end the equipment view controller
 
