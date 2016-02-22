@@ -1,0 +1,19 @@
+<ion-view view-title="{{ equipment.name }}">
+  <ion-content>
+    
+    <div class="list card">
+      <div class="item item-dark item-avatar">
+        
+        <h1>{{ equipment.name }}</h1>
+        <p>
+					Date Added: {{ equipment.created_date | date : format : timezone }}<br>
+					Expected End Of Life: {{equipment.eol }}<br>
+					<br>
+					Description: {{ equipment.description }}<br>
+				</p>
+      </div>
+    </div><!-- end the card -->
+    
+    
+  </ion-content>
+</ion-view>
