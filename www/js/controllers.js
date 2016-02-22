@@ -107,7 +107,7 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentViewCtrl', function($scope, Equipment) {
+.controller('EquipmentCtrl', function($scope, Equipment) {
   $scope.equipment = Equipment.all($scope);
 	 
 	// update view
@@ -121,7 +121,14 @@ angular.module('starter.controllers', [])
   } // end remove method
 })
 // end the equipment view controller
-
+.controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment) {
+  $scope.equipment = Equipment.get($scope, $stateParams.equipment_id);
+  
+  $scope.lol = function() {
+    console.log('equipment is');
+    console.log($scope.equipment)
+  }
+}) // end the plantviewctrl
 
 
 ;

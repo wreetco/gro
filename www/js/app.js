@@ -161,6 +161,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-dash': {
         templateUrl: 'templates/equipment.html',
+        controller: 'EquipmentCtrl'
+      }
+    }
+  })
+	.state('tab.equipment-show', {
+    url: '/equipment/:equipment_id',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/equipment_show.html',
         controller: 'EquipmentViewCtrl'
       }
     }

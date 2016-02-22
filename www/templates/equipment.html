@@ -1,25 +1,26 @@
 <ion-view view-title="Equipment">
   <ion-content class="padding">
     <ion-list>
-			<ion-item class="item-remove-animate item-dark item-avatar item-icon-right" ng-repeat="e in equipment | orderBy:category">
-        <!--<i class="icon ion-alert assertive item-image"></i>-->
-				<h2>{{e.name}}</h2>
-				<p>
-					Description: {{e.description}}<br>
-					Created: {{e.created_date | date : format : timezone}}<br>
-					<!-- 
-					We should display this if it exists
-					We could do it color coded based on how soon the date is.
-					e.g displays red if EOL is tomorrow, green if it's next year
+			<ion-item class="item-remove-animate item-dark item-avatar item-icon-right plant-item" ng-repeat="e in equipment | orderBy:category">
+				<a href="#/tab/equipment/{{ e._id.$oid }}" class="plant-link"></a>
+					<!--<i class="icon ion-alert assertive item-image"></i>-->
+					<h2>{{e.name}}</h2>
+					<p>
+						Description: {{e.description}}<br>
+						Created: {{e.created_date | date : format : timezone}}<br>
+						<!-- 
+						We should display this if it exists
+						We could do it color coded based on how soon the date is.
+						e.g displays red if EOL is tomorrow, green if it's next year
 
-					Expected EOL: {{e.eol}}<br> 
-					-->
-					Category: {{e.category}}
-				</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-        <ion-option-button class="button-assertive" ng-click="remove(notification)">
-          Delete
-        </ion-option-button>
+						Expected EOL: {{e.eol}}<br> 
+						-->
+						Category: {{e.category}}
+					</p>
+					<i class="icon ion-chevron-right icon-accessory"></i>
+					<ion-option-button class="button-assertive" ng-click="remove(notification)">
+						Delete
+					</ion-option-button>
 			</ion-item>
 		</ion-list>
   </ion-content>
