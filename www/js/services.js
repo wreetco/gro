@@ -120,7 +120,20 @@ angular.module('starter.services', [])
     get: function(plant_id) {
       console.log('s.Plants.get');
       var d = $q.defer();
+      var plant;
       $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants/" + plant_id).success(function(data, status) {
+        Notifications.all().then(function(notifications) {
+          // we need to go through each plant, and collect their notifications 
+          data.notifications = [];
+          for (n of notifications) {
+            if (!n.plant_id)
+              continue;
+            if (n.plant_id.$oid == plant_id) 
+              data.notifications.push(n);
+            // done 
+          }
+
+        }); // end get notifications
         d.resolve(data);
       });
       return d.promise;
