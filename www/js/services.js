@@ -103,14 +103,12 @@ angular.module('starter.services', [])
             for (n of notifications) {
               if (!n.plant_id)
                 continue;
-              if (n.plant_id.$oid == plant._id.$oid) 
+              if (n.plant_id.$oid === plant._id.$oid) 
                 plant.notifications.push(n);
               // done 
             }
           } // end plant iteration
         }); // end get notifications
-        
-        
         $scope.plants = plants;
       });
     }, // end all method
