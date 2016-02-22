@@ -100,12 +100,9 @@ angular.module('starter.controllers', [])
 
 // plant view control
 .controller('PlantViewCtrl', function($scope, $stateParams, Plants) {
-  $scope.plant = Plants.get($scope, $stateParams.plant_id);
-  
-  $scope.lol = function() {
-    console.log('plant is');
-    console.log($scope.plant)
-  }
+  Plants.get($stateParams.plant_id).then(function(plant) {
+    $scope.plant = plant;
+  });
 }) // end the plantviewctrl
 
 // equipment view controller

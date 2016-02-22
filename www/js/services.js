@@ -110,20 +110,20 @@ angular.module('starter.services', [])
           } // end plant iteration
         }); // end get notifications
         $scope.plants = plants;
+        console.log('dfd');
       });
     }, // end all method
     
     remove: function(plant) {
       plants.splice(plants.indexOf(plant), 1);
     },
-    get: function($scope, plant_id) {
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]._id.$oid == plant_id) {
-            $scope.plant = data[i];
-          }
-        }
+    get: function(plant_id) {
+      console.log('s.Plants.get');
+      var d = $q.defer();
+      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants/" + plant_id).success(function(data, status) {
+        d.resolve(data);
       });
+      return d.promise;
     },
     
     save: function(plant) {
