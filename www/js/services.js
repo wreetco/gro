@@ -178,6 +178,56 @@ angular.module('starter.services', [])
   }
 }])
 
+// notes factory yall
+.factory('Equipment', function($q, $http) {
+	return {
+    all: function($scope) {
+      $http.get('https://grast.wreet.co/56b55a2de449852a75000000/equipment').success(function(data, status) {
+  			$scope.equipment = data;
+  			console.log('we did it, hopefully');
+  			console.log(data);
+    	});
+    },
+    remove: function(equipment) {
+      notes.splice(notes.indexOf(note), 1);
+    },
+    get: function($scope, equipment_id) {
+      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/equipment").success(function(data, status) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]._id.$oid == equipment_id) {
+            $scope.equipment = data[i];
+          }
+        }
+      });
+    },
+    save: function(equipment) {
+      var d = $q.defer();
+      // post the note
+      /*
+      $timeout(function() {
+        d.resolve('sup brad');
+      }, 2000)
+      */
+      var req = JSON.stringify({
+        "equipment": equipment
+      });
+
+      console.log('equipment');
+      console.log(req);
+
+      $http.post("http://192.168.1.140:4567/567893cec6f3605725000001/equipment/add", req).success(function(data, status) {
+        d.resolve({
+          "data": data,
+          "status": status
+        });
+      }); // end note post
+
+      // send back the promise
+      return d.promise;
+    } // end save method
+  }
+
+})
 
 // end it
 

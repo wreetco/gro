@@ -107,11 +107,28 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentViewCtrl', function($scope) {
-  
+.controller('EquipmentCtrl', function($scope, Equipment) {
+  $scope.equipment = Equipment.all($scope);
+	 
+	// update view
+  $scope.refresh = function($scope) {
+    $scope.equipment = Equipment.all($scope);
+    $scope.$broadcast('scroll.refreshComplete');
+	}	
+  // delete a notification
+  $scope.remove = function(equipment) {
+    Equipment.remove(equipment);
+  } // end remove method
 })
 // end the equipment view controller
-
+.controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment) {
+  $scope.equipment = Equipment.get($scope, $stateParams.equipment_id);
+  
+  $scope.lol = function() {
+    console.log('equipment is');
+    console.log($scope.equipment)
+  }
+}) // end the plantviewctrl
 
 
 ;
