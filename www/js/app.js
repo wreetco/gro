@@ -30,6 +30,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $httpProvider.defaults.headers.patch = {};
 })
 
+.config(['$ionicConfigProvider', function($ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom'); // other values: top
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
