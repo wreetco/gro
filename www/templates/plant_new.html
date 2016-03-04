@@ -10,10 +10,15 @@
           <span class="input-label">Plant Date</span>
           <input type="text" placeholder="Plant Date" ng-model="new_plant.planted_date">
         </label>
-        <label class="item item-dark item-input item-floating-label">
-          <span class="input-label">Image</span>
-          <input type="text" placeholder="Image" ng-model="new_plant.plant_image" ng-click="takePhoto()">
-        </label>
+
+        <div class="row">
+          <div class="col pic-placeholder" ng-click="takePhoto(0);">
+            <img src="" id="brad[0]">
+          </div>
+          <div class="col pic-placeholder" ng-click="takePhoto(1);">
+            <img src="" id="brad[1]">
+          </div>
+        </div>
 
         <br />
         <div class="center-text">

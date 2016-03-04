@@ -10,7 +10,7 @@
     <ng-include src="'/templates/_plants_overview_status_row.html'"></ng-include>
 
     <!-- now we need to have a plant list -->
-    <div ng-repeat="row in plants" class="row">  
+    <div ng-repeat="row in plants" class="row">
       <div class="col col-50 plant-item" ng-repeat="plant in row">
         <a href="#/tab/plants/{{ plant._id.$oid }}" class="plant-link"></a>
         <div class="item item-dark plant-item-status-bar {{ (plant.status) ? plant.status : null }}">{{ plant.strain }}</div>
@@ -23,6 +23,10 @@
         </p>
       </div>
     </div><!-- end row -->
+
+    <div class="floating-action-button">
+      <i class="icon ion-plus" ui-sref="tab.new-plant"></i>
+    </div>
 
   </ion-content>
 </ion-view>

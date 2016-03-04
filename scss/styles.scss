@@ -73,6 +73,7 @@
   text-align: center;
   background-color: $calm;
   color: $dark;
+  z-index: 99;
 }
 
 .floating-action-button .icon {
@@ -84,13 +85,42 @@ textarea.dark {
   min-height: 3em;
 }
 
+.pic-placeholder {
+  border: 2px solid #999;
+  border-radius: 0.5em;
+  margin: 0 1em 0 1em;
+  height: 12em;
+  position: relative;
+  line-height: 12em;
+  overflow: hidden;
+}
+
+.pic-placeholder:after {
+  content: "+";
+  font-size: 3em;
+  text-align: center;
+  color: #999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
+.pic-placeholder img {
+  //overflow: scroll;
+  border: 2px solid red;
+  width: 100px;
+}
+
 .plant-view-status {
   position: absolute;
   left: 16px;
   top: 16px;
   height: 40px;
   width: 40px;
-  
+
   border: 1px solid orange;
 }
 

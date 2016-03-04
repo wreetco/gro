@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     console.log(notifications);
     $scope.notifications = notifications;
   });
-	 
+
 	// update view
   $scope.refresh = function($scope) {
     Notifications.all().then(function(notifications) {
@@ -18,9 +18,9 @@ angular.module('starter.controllers', [])
       console.log(notifications);
       $scope.notifications = notifications;
     });
-    
+
     $scope.$broadcast('scroll.refreshComplete');
-	}	
+	}
   // delete a notification
   $scope.remove = function(notification) {
     Notifications.remove(notification);
@@ -87,9 +87,11 @@ angular.module('starter.controllers', [])
   }
 
   // plants need a photo
-  $scope.takePhoto = function() {
-    Camera.getPicture().then(function(imageURI) {
-      console.log(imageURI);
+  $scope.takePhoto = function(brad_index) {
+    Camera.getPicture().then(function(img_url) {
+      var image = document.getElementById('brad[' + brad_index + ']');
+      image.src = img_url;
+      console.log(image);
     }, function(err) {
       console.err(err);
     });
@@ -108,12 +110,12 @@ angular.module('starter.controllers', [])
 // equipment view controller
 .controller('EquipmentCtrl', function($scope, Equipment) {
   $scope.equipment = Equipment.all($scope);
-	 
+
 	// update view
   $scope.refresh = function($scope) {
     $scope.equipment = Equipment.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
-	}	
+	}
   // delete a notification
   $scope.remove = function(equipment) {
     Equipment.remove(equipment);
@@ -122,7 +124,7 @@ angular.module('starter.controllers', [])
 // end the equipment view controller
 .controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment) {
   $scope.equipment = Equipment.get($scope, $stateParams.equipment_id);
-  
+
   $scope.lol = function() {
     console.log('equipment is');
     console.log($scope.equipment)
