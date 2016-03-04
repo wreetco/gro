@@ -1,22 +1,24 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Plants) {
-  $scope.plants = Plants.all();
+  $scope.plants = Plants.all($scope);
 })
 
 .controller('NotificationsCtrl', function($scope, Notifications) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-	$scope.notifications = Notifications.all($scope);
+  Notifications.all().then(function(notifications) {
+    console.log('promise');
+    console.log(notifications);
+    $scope.notifications = notifications;
+  });
 	 
 	// update view
   $scope.refresh = function($scope) {
-    $scope.notifications = Notifications.all($scope);
+    Notifications.all().then(function(notifications) {
+      console.log('promise');
+      console.log(notifications);
+      $scope.notifications = notifications;
+    });
+    
     $scope.$broadcast('scroll.refreshComplete');
 	}	
   // delete a notification
@@ -24,7 +26,7 @@ angular.module('starter.controllers', [])
     Notifications.remove(notification);
   } // end remove method
 
-})
+}) // end notifications controller
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
@@ -98,12 +100,9 @@ angular.module('starter.controllers', [])
 
 // plant view control
 .controller('PlantViewCtrl', function($scope, $stateParams, Plants) {
-  $scope.plant = Plants.get($scope, $stateParams.plant_id);
-  
-  $scope.lol = function() {
-    console.log('plant is');
-    console.log($scope.plant)
-  }
+  Plants.get($stateParams.plant_id).then(function(plant) {
+    $scope.plant = plant;
+  });
 }) // end the plantviewctrl
 
 // equipment view controller

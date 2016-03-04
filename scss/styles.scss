@@ -27,7 +27,7 @@
 }
 
 .plant-item:nth-child(odd) {
-  border-right: 1px solid rgba(70, 70, 70, .65);
+  // border-right: 1px solid rgba(70, 70, 70, .65);
   position: relative;
 }
 
@@ -92,4 +92,12 @@ textarea.dark {
   width: 40px;
   
   border: 1px solid orange;
+}
+
+.plant-footer {
+  padding: 10px;
+}
+
+.plant-footer a:last-child {
+  float: right;
 }
