@@ -181,8 +181,7 @@ angular.module('starter.services', [])
   }
 }])
 
-<<<<<<< HEAD
-// notes factory yall
+// equipment factory yall
 .factory('Equipment', function($q, $http) {
 	return {
     all: function($scope) {
@@ -236,8 +235,6 @@ angular.module('starter.services', [])
 // end it
 
 
-
-=======
 // journals 
 .factory('Journals', function($http, $q) {
   
@@ -256,8 +253,6 @@ angular.module('starter.services', [])
 	} // end return
 })
 // end journals
->>>>>>> api-dev
-
 
 
 
