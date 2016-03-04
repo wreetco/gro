@@ -77,10 +77,12 @@ angular.module('starter.controllers', [])
   } // end remove method
 
   // add a plant
-  $scope.new_plant = {};
+  $scope.new_plant = {images: []};
   $scope.savePlant = function() {
+    console.log('newplant');
+    console.log($scope.new_plant);
     Plants.save($scope.new_plant).then(function(res) {
-      console.log('from the then');
+
       console.log(res);
       $state.go('tab.plants');
     });
@@ -88,10 +90,16 @@ angular.module('starter.controllers', [])
 
   // plants need a photo
   $scope.takePhoto = function(brad_index) {
-    Camera.getPicture().then(function(img_url) {
+    var options = {
+      quality : 75,
+      targetWidth: 1920,
+      targetHeight: 1080,
+    };
+    Camera.getPicture(options).then(function(img_url) {
       var image = document.getElementById('brad[' + brad_index + ']');
       image.src = img_url;
-      console.log(image);
+      // put it in the array
+      $scope.new_plant.images.push(img_url);
     }, function(err) {
       console.err(err);
     });

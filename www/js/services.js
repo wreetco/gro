@@ -5,7 +5,7 @@ angular.module('starter.services', [])
   return {
     all: function() {
       console.log('s.Notifications.all');
-      // make a promise 
+      // make a promise
       var d = $q.defer();
       // get the data
 			$http.get('https://grast.wreet.co/56b55a2de449852a75000000/notifications').success(function(data, status) {
@@ -95,7 +95,7 @@ angular.module('starter.services', [])
         }
         // now that we have a list of plants lets get the notifications for each
         Notifications.all().then(function(notifications) {
-          // we need to go through each plant, and collect their notifications 
+          // we need to go through each plant, and collect their notifications
           console.log(notifications);
           for (plant of plants_noformat) {
             // each one needs an array of them
@@ -103,9 +103,9 @@ angular.module('starter.services', [])
             for (n of notifications) {
               if (!n.plant_id)
                 continue;
-              if (n.plant_id.$oid === plant._id.$oid) 
+              if (n.plant_id.$oid === plant._id.$oid)
                 plant.notifications.push(n);
-              // done 
+              // done
             }
           } // end plant iteration
         }); // end get notifications
@@ -113,7 +113,7 @@ angular.module('starter.services', [])
         console.log('dfd');
       });
     }, // end all method
-    
+
     remove: function(plant) {
       plants.splice(plants.indexOf(plant), 1);
     },
@@ -123,14 +123,14 @@ angular.module('starter.services', [])
       var plant;
       $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants/" + plant_id).success(function(data, status) {
         Notifications.all().then(function(notifications) {
-          // we need to go through each plant, and collect their notifications 
+          // we need to go through each plant, and collect their notifications
           data.notifications = [];
           for (n of notifications) {
             if (!n.plant_id)
               continue;
-            if (n.plant_id.$oid == plant_id) 
+            if (n.plant_id.$oid == plant_id)
               data.notifications.push(n);
-            // done 
+            // done
           }
 
         }); // end get notifications
@@ -138,24 +138,18 @@ angular.module('starter.services', [])
       });
       return d.promise;
     },
-    
+
     save: function(plant) {
       var d = $q.defer();
       // post the plant
-      /*
-      $timeout(function() {
-        d.resolve('sup brad');
-      }, 2000)
-      */
+
       var req = JSON.stringify({
         "plant": plant
       });
 
-      console.log('plant');
-      console.log(req);
-
-      $http.post("http://192.168.1.140:4567/567893cec6f3605725000001/plants/add", req).success(function(data, status) {
+      $http.post("https://grast.wreet.co/56b55a2de449852a75000000/plants/add", req).success(function(data, status) {
         console.log(data);
+        d.resolve(data);
       }); // end note post
 
 
@@ -235,14 +229,14 @@ angular.module('starter.services', [])
 // end it
 
 
-// journals 
+// journals
 .factory('Journals', function($http, $q) {
-  
+
   return {
     all: function() {
 
   	}, // end all
-  	
+
   	getPlantJournals: function(plant_id) {
   	  var d = $q.defer();
   	  $http.get("https://grast.wreet.co/56b55a2de449852a75000000/" + plant_id + "/journals").success(function(data, status) {

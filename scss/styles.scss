@@ -88,7 +88,8 @@ textarea.dark {
 .pic-placeholder {
   border: 2px solid #999;
   border-radius: 0.5em;
-  margin: 0 1em 0 1em;
+  margin: 1em .5em 0 .5em;
+  padding: 0px !important;
   height: 12em;
   position: relative;
   line-height: 12em;
@@ -97,7 +98,7 @@ textarea.dark {
 
 .pic-placeholder:after {
   content: "+";
-  font-size: 3em;
+  font-size: 4em;
   text-align: center;
   color: #999;
   position: absolute;
@@ -109,9 +110,7 @@ textarea.dark {
 
 
 .pic-placeholder img {
-  //overflow: scroll;
-  border: 2px solid red;
-  width: 100px;
+  width: 100%;
 }
 
 .plant-view-status {
