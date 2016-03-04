@@ -181,13 +181,27 @@ angular.module('starter.services', [])
   }
 }])
 
+// journals 
+.factory('Journals', function($http, $q) {
+  
+  return {
+    all: function() {
+
+  	}, // end all
+  	
+  	getPlantJournals: function(plant_id) {
+  	  var d = $q.defer();
+  	  $http.get("https://grast.wreet.co/56b55a2de449852a75000000/" + plant_id + "/journals").success(function(data, status) {
+  	    d.resolve(data);
+  	  });
+  	  return d.promise;
+  	} // end getPlantJournals
+	} // end return
+})
+// end journals
+
+
+
 
 // end it
-
-
-
-
-
-
-
 ;
