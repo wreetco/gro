@@ -250,8 +250,8 @@ angular.module('starter.services', [])
       var url = "http://192.168.86.132:4567/567893cec6f3605725000001/56da3027c6f3602b399805bf/journals/56da3027c6f3602b399805be/add_photo";
 
       var options = new FileUploadOptions();
-      options.fileKey = "file";
-      options.fileName = path;
+      options.fileKey = "brad";
+      options.fileName = j_id + Math.random() * 100000000000000000;
       options.mimeType = "text/plain";
 
       var fail = function(e){console.log('Journals.addJournalPhoto: could not add photo' + e);};
