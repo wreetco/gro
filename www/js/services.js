@@ -243,7 +243,29 @@ angular.module('starter.services', [])
   	    d.resolve(data);
   	  });
   	  return d.promise;
-  	} // end getPlantJournals
+  	}, // end getPlantJournals
+
+    addJournalPhoto: function(j_id, path) {
+      var d = $q.defer();
+      var url = "http://192.168.86.132:4567/567893cec6f3605725000001/56da3027c6f3602b399805bf/journals/56da3027c6f3602b399805be/add_photo";
+
+      var options = new FileUploadOptions();
+      options.fileKey = "file";
+      options.fileName = path;
+      options.mimeType = "text/plain";
+
+      var fail = function(e){console.log('Journals.addJournalPhoto: could not add photo' + e);};
+      var ft = new FileTransfer();
+      ft.upload(path, url,
+      function(res) {
+        d.resolve(res);
+      },
+      fail, options);
+
+      return d.promise;
+    } // end addJournalPhoto method
+
+
 	} // end return
 })
 // end journals
