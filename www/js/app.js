@@ -125,7 +125,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-dash': {
         templateUrl: 'templates/schedule.html',
-        controller: 'AccountCtrl'
+        controller: 'ScheduleCtrl'
       }
     }
   })

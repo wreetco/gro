@@ -28,15 +28,15 @@ angular.module('starter.controllers', [])
 
 }) // end notifications controller
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
 .controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-})
+  // handle the grow key setting
+
+}) // end accountctrl
+
+.controller('ScheduleCtrl', function($scope) {
+  // scheduling control
+
+}) // end schedulectrl
 
 // notes shizznit
 .controller('NotesCtrl', function($scope, $state, Notes) {
