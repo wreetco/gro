@@ -8,7 +8,7 @@
         <p>
           {{ notification.text_field }}
           <br />
-          {{ notification.created_date }}
+          {{ notification.created_date | date: 'longDate' : '+0700'}}
 					<!-- {{ notification._id.$oid }} -->
         </p>
         <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
