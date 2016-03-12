@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title light">Edit Authorization Key</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <p>Your version of this app requires an authorization key provided by wreetco.</p>
+        <p>Please enter your key below in order to access your data.</p>
+
+        <div class="center-text">
+          <input type="text dark" placeholder="Key..." style="width: 100%;" ng-model="auth.key" />
+          <button class="button button-calm" style="margin-top: 1em; color: #222;" ng-click="modifyKey()">save</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

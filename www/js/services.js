@@ -271,6 +271,7 @@ angular.module('starter.services', [])
 .service('SessionService', [function () {
   var localStoreAvailable = typeof (Storage) !== "undefined";
   this.store = function (name, details) {
+    console.log("SessionService.store: " + name + ", " + details);
     if (localStoreAvailable) {
       if (angular.isUndefined(details)) {
         details = null;
@@ -338,6 +339,26 @@ angular.module('starter.services', [])
   return this;
 }])
 // end session storage
+
+// modal factory
+.factory('ModalService', function($ionicModal, $q) {
+
+  return {
+    // make a nice modal for the scope
+    getModal: function($scope, template_url) {
+      var d = $q.defer();
+      $ionicModal.fromTemplateUrl(template_url, {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        d.resolve($scope.modal);
+      });
+      return d.promise;
+    }// end getModal method
+	} // end return
+})
+// end modal area
 
 
 

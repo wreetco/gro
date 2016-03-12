@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Plants, SessionService) {
-  SessionService.store('grow_id', '56e32ac8e4498504a5000000');
+  //SessionService.store('grow_id', '56e32ac8e4498504a5000000');
   $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
 })
 
@@ -29,8 +29,21 @@ angular.module('starter.controllers', [])
 
 }) // end notifications controller
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, ModalService, SessionService) {
   // handle the grow key setting
+  //$scope.auth_key = SessionService.get('grow_id');
+  $scope.auth = {key: SessionService.get('grow_id')};
+  $scope.keyModal = function() {
+    ModalService.getModal($scope, 'templates/_auth_key_modal.html').then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  } // end keymodal method
+
+  $scope.modifyKey = function() {
+    SessionService.store('grow_id', $scope.auth.key);
+    $scope.modal.hide();
+  } // end modifyKey method
 
 }) // end accountctrl
 

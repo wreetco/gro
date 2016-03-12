@@ -1,7 +1,7 @@
 <ion-view view-title="Settings">
   <ion-content>
     <ion-list>
-			
+
   		<div class="item item-dark item-divider item-icon-right" style="color: #50ff88; background-color: #121212">
     		General
 				<i class="icon ion-gear-a icon-accessory calm" style="color: #50ff88;"></i>
@@ -9,15 +9,15 @@
 			<ion-item class="item-dark" href="#/tab/cache">
 				<h2>Clear Cache</h2>
 			</ion-item>
-			
+
   		<div class="item item-dark item-divider item-icon-right" style="color: #50ff88; background-color: #121212">
     		Connection
 				<i class="icon ion-wifi icon-accessory calm" style="color: #50ff88;"></i>
   		</div>
-			<ion-item class="item-dark item-icon-right" href="#/tab/auth_key">
+			<ion-item class="item-dark item-icon-right" ng-click="keyModal();">
 				<h2>Authorization Key</h2>
 			</ion-item>
-			
+
   		<div class="item item-dark item-divider item-icon-right" style="color: #50ff88; background-color: #121212">
     		Help
 				<i class="icon ion-help-circled icon-accessory calm" style="color: #50ff88;"></i>
@@ -28,7 +28,7 @@
 			<ion-item class="item-dark item-icon-right" href="#/tab/about">
 				<h2>About</h2>
 			</ion-item>
-			
+
     </ion-list>
   </ion-content>
 </ion-view>
