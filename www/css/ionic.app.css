@@ -70,19 +70,25 @@ $dark:                            #444 !default;
 
 .floating-action-button {
   position: fixed;
-  right: 2em;
-  bottom: 2em;
-  width: 3em;
-  height: 3em;
-  line-height: 3em;
-  border-radius: 3em;
+  right: 3.5em;
+  bottom: 5.5em;
+  width: 4em;
+  height: 4em;
+  line-height: 4em;
+  border-radius: 4em;
   text-align: center;
   background-color: #50ff88;
   color: #151f26;
-  z-index: 99; }
+  z-index: 99;
+  transition: all 0.2s ease-in-out; }
 
 .floating-action-button .icon {
   font-size: 1.5em; }
+
+.floating-action-button:hover {
+  box-shadow: 0px 0px 12px 4px  #777;
+  background-color: #61ff99;
+  color: green; }
 
 textarea.dark {
   background-color: #12161a;
@@ -7723,7 +7729,7 @@ textarea {
   padding: 7px 10px 7px 0px;
   max-width: 200px;
   width: 35%;
-  color: #151f26;
+  color: #fff;
   font-size: 16px; }
 
 .placeholder-icon {
@@ -7798,7 +7804,7 @@ input[type="color"] {
   padding-top: 2px;
   padding-left: 0;
   height: 34px;
-  color: #111;
+  color: #fff;
   vertical-align: middle;
   font-size: 14px;
   line-height: 16px; }
