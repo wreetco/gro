@@ -3,12 +3,11 @@
 
     <div class="list card">
       <div class="item item-dark item-avatar" style="margin-bottom: 0;">
-
-        <!--<img src="mcfly.jpg">-->
+				
         <span class="plant-view-status"></span>
 
         <h2>{{ plant.strain }}</h2>
-        <p>Planted: {{ plant.date_planted | date: format : timezone }}</p>
+        <p>Planted: {{ plant.date_planted | date: 'longDate' : '+0700'}}</p>
       </div>
 
       <div class="item item-dark item-body" style="padding-top: 0 !important; margin-top: 0;">
