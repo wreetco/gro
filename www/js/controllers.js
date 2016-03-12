@@ -41,7 +41,10 @@ angular.module('starter.controllers', [])
 
 // notes shizznit
 .controller('NotesCtrl', function($scope, $state, Notes, SessionService) {
-  $scope.notes = Notes.all($scope, SessionService.get('grow_id'));
+  // do them, do them now
+  Notes.all(SessionService.get('grow_id')).then(function(res) {
+    $scope.notes = res;
+  });
 
   $scope.remove = function(note) {
     Notes.remove(note);
@@ -49,8 +52,8 @@ angular.module('starter.controllers', [])
 
   $scope.new_note = {};
   $scope.saveNote = function(note) {
-    Notes.save($scope.new_note).then(function(res) {
-      console.log('from the then');
+    Notes.save(SessionService.get('grow_id'), $scope.new_note).then(function(res) {
+      console.log('NotesCtrl.saveNote');
       console.log(res);
     });
   } // end save
@@ -58,8 +61,8 @@ angular.module('starter.controllers', [])
 }) // end notesCtrl
 
 // note view control
-.controller('NoteViewCtrl', function($scope, $stateParams, Notes) {
-  $scope.note = Notes.get($scope, $stateParams.note_id);
+.controller('NoteViewCtrl', function($scope, $stateParams, Notes, SessionService) {
+  $scope.note = Notes.get($scope, SessionService.get('grow_id'), $stateParams.note_id);
 }) // end the notviewctrl
 
 // plants controllers

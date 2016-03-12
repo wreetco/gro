@@ -24,18 +24,18 @@ angular.module('starter.services', [])
 .factory('Notes', function($q, $http) {
 
   return {
-    all: function($scope, grow_id) {
+    all: function(grow_id) {
+      var d = $q.defer();
       $http.get('https://grast.wreet.co/' + grow_id + '/notes').success(function(data, status) {
-  			$scope.notes = data;
-  			console.log('we did it, hopefully');
-  			console.log(data);
+        d.resolve(data);
     	});
+      return d.promise;
     },
     remove: function(note) {
       notes.splice(notes.indexOf(note), 1);
     },
-    get: function($scope, note_id) {
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/notes").success(function(data, status) {
+    get: function($scope, grow_id, note_id) {
+      $http.get("https://grast.wreet.co/" + grow_id + "/notes").success(function(data, status) {
         for (var i = 0; i < data.length; i++) {
           if (data[i]._id.$oid == note_id) {
             $scope.note = data[i];
@@ -43,7 +43,7 @@ angular.module('starter.services', [])
         }
       });
     },
-    save: function(note) {
+    save: function(grow_id, note) {
       var d = $q.defer();
       // post the note
 
@@ -54,7 +54,7 @@ angular.module('starter.services', [])
       console.log('note');
       console.log(req);
 
-      $http.post("http://192.168.1.140:4567/567893cec6f3605725000001/notes/add", req).success(function(data, status) {
+      $http.post("https://grast.wreet.co/" + grow_id + "/notes/add", req).success(function(data, status) {
         d.resolve({
           "data": data,
           "status": status
