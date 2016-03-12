@@ -3,12 +3,12 @@ angular.module('starter.services', [])
 .factory('Notifications', function($http, $q) {
   // Might use a resource here that returns a JSON array
   return {
-    all: function() {
+    all: function(grow_id) {
       console.log('s.Notifications.all');
       // make a promise
       var d = $q.defer();
       // get the data
-			$http.get('https://grast.wreet.co/56b55a2de449852a75000000/notifications').success(function(data, status) {
+			$http.get('https://grast.wreet.co/' + grow_id + '/notifications').success(function(data, status) {
 				d.resolve(data);
     	});
     	// return to the promise
@@ -24,8 +24,8 @@ angular.module('starter.services', [])
 .factory('Notes', function($q, $http) {
 
   return {
-    all: function($scope) {
-      $http.get('https://grast.wreet.co/56b55a2de449852a75000000/notes').success(function(data, status) {
+    all: function($scope, grow_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/notes').success(function(data, status) {
   			$scope.notes = data;
   			console.log('we did it, hopefully');
   			console.log(data);
@@ -46,11 +46,7 @@ angular.module('starter.services', [])
     save: function(note) {
       var d = $q.defer();
       // post the note
-      /*
-      $timeout(function() {
-        d.resolve('sup brad');
-      }, 2000)
-      */
+
       var req = JSON.stringify({
         "note": note
       });
@@ -77,8 +73,8 @@ angular.module('starter.services', [])
 .factory('Plants', function($q, $http, Notifications) {
 
   return {
-    all: function($scope) {
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants").success(function(data, status) {
+    all: function($scope, grow_id) {
+      $http.get("https://grast.wreet.co/" + grow_id + "/plants").success(function(data, status) {
         var plants = [];
         var plants_noformat = [];
         var row = [];
@@ -110,6 +106,7 @@ angular.module('starter.services', [])
           } // end plant iteration
         }); // end get notifications
         $scope.plants = plants;
+        $scope.plants_noformat = plants_noformat;
         console.log('dfd');
       });
     }, // end all method
@@ -117,11 +114,11 @@ angular.module('starter.services', [])
     remove: function(plant) {
       plants.splice(plants.indexOf(plant), 1);
     },
-    get: function(plant_id) {
+    get: function(grow_id, plant_id) {
       console.log('s.Plants.get');
       var d = $q.defer();
       var plant;
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/plants/" + plant_id).success(function(data, status) {
+      $http.get("https://grast.wreet.co/" + grow_id + "/plants/" + plant_id).success(function(data, status) {
         Notifications.all().then(function(notifications) {
           // we need to go through each plant, and collect their notifications
           data.notifications = [];
@@ -139,7 +136,7 @@ angular.module('starter.services', [])
       return d.promise;
     },
 
-    save: function(plant) {
+    save: function(grow_id, plant) {
       var d = $q.defer();
       // post the plant
 
@@ -147,7 +144,7 @@ angular.module('starter.services', [])
         "plant": plant
       });
 
-      $http.post("https://grast.wreet.co/56b55a2de449852a75000000/plants/add", req).success(function(data, status) {
+      $http.post("https://grast.wreet.co/" + grow_id + "/plants/add", req).success(function(data, status) {
         console.log(data);
         d.resolve(data);
       }); // end note post
@@ -178,8 +175,8 @@ angular.module('starter.services', [])
 // equipment factory yall
 .factory('Equipment', function($q, $http) {
 	return {
-    all: function($scope) {
-      $http.get('https://grast.wreet.co/56b55a2de449852a75000000/equipment').success(function(data, status) {
+    all: function($scope, grow_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/equipment').success(function(data, status) {
   			$scope.equipment = data;
   			console.log('we did it, hopefully');
   			console.log(data);
@@ -245,13 +242,13 @@ angular.module('starter.services', [])
   	  return d.promise;
   	}, // end getPlantJournals
 
-    addJournalPhoto: function(j_id, path) {
+    addJournalPhoto: function(grow_id, plant_id, j_id, path) {
       var d = $q.defer();
-      var url = "http://192.168.86.132:4567/567893cec6f3605725000001/56da3027c6f3602b399805bf/journals/56da3027c6f3602b399805be/add_photo";
+      var url = "https://grast.wreet.co/" + grow_id + "/" + plant_id + "/journals/" + j_id + "/add_photo";
 
       var options = new FileUploadOptions();
       options.fileKey = "brad";
-      options.fileName = j_id + Math.random() * 100000000000000000;
+      options.fileName = j_id + Math.floor((Math.random() * 100000) + 1);
       options.mimeType = "text/plain";
 
       var fail = function(e){console.log('Journals.addJournalPhoto: could not add photo' + e);};
@@ -270,7 +267,84 @@ angular.module('starter.services', [])
 })
 // end journals
 
+// session service taken from 'Owen' http://stackoverflow.com/users/1933263/owen
+.service('SessionService', [function () {
+  var localStoreAvailable = typeof (Storage) !== "undefined";
+  this.store = function (name, details) {
+    if (localStoreAvailable) {
+      if (angular.isUndefined(details)) {
+        details = null;
+      } else if (angular.isObject(details) || angular.isArray(details) || angular.isNumber(+details || details)) {
+        details = angular.toJson(details);
+      };
+      sessionStorage.setItem(name, details);
+    } else {
+      //$cookieStore.put(name, details);
+    };
+  };
+
+  this.persist = function(name, details) {
+    if (localStoreAvailable) {
+      if (angular.isUndefined(details)) {
+        details = null;
+      } else if (angular.isObject(details) || angular.isArray(details) || angular.isNumber(+details || details)) {
+        details = angular.toJson(details);
+      };
+      localStorage.setItem(name, details);
+    } else {
+      //$cookieStore.put(name, details);
+    }
+  };
+
+  this.get = function (name) {
+    if (localStoreAvailable) {
+      return getItem(name);
+    } else {
+      //return $cookieStore.get(name);
+    }
+  };
+
+  this.destroy = function (name) {
+    if (localStoreAvailable) {
+      localStorage.removeItem(name);
+      sessionStorage.removeItem(name);
+    } else {
+      //$cookieStore.remove(name);
+    };
+  };
+
+  var getItem = function (name) {
+    var data;
+    var localData = localStorage.getItem(name);
+    var sessionData = sessionStorage.getItem(name);
+
+    if (sessionData) {
+      data = sessionData;
+    } else if (localData) {
+      data = localData;
+    } else {
+      return null;
+    }
+
+    if (data === '[object Object]') { return null; };
+    if (!data.length || data === 'null') { return null; };
+
+    if (data.charAt(0) === "{" || data.charAt(0) === "[" || angular.isNumber(data)) {
+      return angular.fromJson(data);
+    };
+
+    return data;
+  };
+  return this;
+}])
+// end session storage
+
 
 
 // end it
 ;
+
+
+
+
+

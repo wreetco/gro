@@ -24,6 +24,9 @@ $dark:                            #444 !default;
 .center-text {
   text-align: center; }
 
+.right {
+  float: right; }
+
 .stat-window i:first-child {
   font-size: 4em; }
 

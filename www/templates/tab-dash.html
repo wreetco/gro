@@ -1,20 +1,10 @@
 <ion-view view-title="Lipan Garage">
   <ion-content class="padding">
-    <!--
-    <div class="list card">
-      <div class="item item-divider">Overview</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
-        </div>
-      </div>
-    </div>
-    -->
     <div class="row">
       <div class="col stat-window" onclick="location.hash='#/tab/plants';">
         <i class="icon ion-leaf calm"></i>
         <p>
-          Plants ({{ plants.length }})
+          Plants ({{ plants_noformat.length }})
         </p>
       </div>
       <div class="col stat-window" onclick="location.hash='#/tab/schedule';">

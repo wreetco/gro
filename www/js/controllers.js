@@ -1,11 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Plants) {
-  $scope.plants = Plants.all($scope);
+.controller('DashCtrl', function($scope, Plants, SessionService) {
+  SessionService.store('grow_id', '56e32ac8e4498504a5000000');
+  $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
 })
 
-.controller('NotificationsCtrl', function($scope, Notifications) {
-  Notifications.all().then(function(notifications) {
+.controller('NotificationsCtrl', function($scope, Notifications, SessionService) {
+  Notifications.all(SessionService.get('grow_id')).then(function(notifications) {
     console.log('promise');
     console.log(notifications);
     $scope.notifications = notifications;
@@ -39,8 +40,8 @@ angular.module('starter.controllers', [])
 }) // end schedulectrl
 
 // notes shizznit
-.controller('NotesCtrl', function($scope, $state, Notes) {
-  $scope.notes = Notes.all($scope);
+.controller('NotesCtrl', function($scope, $state, Notes, SessionService) {
+  $scope.notes = Notes.all($scope, SessionService.get('grow_id'));
 
   $scope.remove = function(note) {
     Notes.remove(note);
@@ -62,8 +63,8 @@ angular.module('starter.controllers', [])
 }) // end the notviewctrl
 
 // plants controllers
-.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals) {
-  $scope.plants = Plants.all($scope);
+.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService) {
+  $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
 
   // update view
   $scope.refresh = function() {
@@ -81,19 +82,15 @@ angular.module('starter.controllers', [])
   $scope.savePlant = function() {
     console.log('newplant');
     console.log($scope.new_plant);
-    /*Plants.save($scope.new_plant).then(function(res) {
+    Plants.save(SessionService.get('grow_id'), $scope.new_plant).then(function(res) {
       console.log(res);
-      $state.go('tab.plants');
+      for (var b = 0; b < $scope.new_plant.images.length; b++) {
+        Journals.addJournalPhoto(SessionService.get('grow_id'), res.plant_id, res.journal_id, $scope.new_plant.images[b]).then(function(res) {
+          console.log('from the journal fucked up thing in the controller');
+          console.log(res);
+        });
+      } // end image iteration
     });
-    */
-
-    for (var b = 0; b < $scope.new_plant.images.length; b++) {
-      Journals.addJournalPhoto(0, $scope.new_plant.images[b]).then(function(res) {
-        console.log('from the journal fucked up thing in the controller');
-        console.log(res);
-      });
-    } // end image iteration
-
   } // end savePlant
 
   // plants need a photo
@@ -117,15 +114,16 @@ angular.module('starter.controllers', [])
 }) // end plantsctrl
 
 // plant view control
-.controller('PlantViewCtrl', function($scope, $stateParams, Plants) {
-  Plants.get($stateParams.plant_id).then(function(plant) {
+.controller('PlantViewCtrl', function($scope, $stateParams, Plants, SessionService) {
+  Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
+    console.log(plant);
     $scope.plant = plant;
   });
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentCtrl', function($scope, Equipment) {
-  $scope.equipment = Equipment.all($scope);
+.controller('EquipmentCtrl', function($scope, Equipment, SessionService) {
+  $scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
 
 	// update view
   $scope.refresh = function($scope) {

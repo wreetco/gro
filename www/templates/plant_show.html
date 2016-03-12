@@ -1,34 +1,36 @@
 <ion-view view-title="{{ plant.strain }}">
   <ion-content>
-    
+
     <div class="list card">
       <div class="item item-dark item-avatar">
-        
+
         <!--<img src="mcfly.jpg">-->
         <span class="plant-view-status">jjk</span>
-        
+
         <h2>{{ plant.strain }}</h2>
         <p>{{ plant.date_planted }}</p>
       </div>
-    
+
       <div class="item item-dark item-body">
-        <img class="full-image" src="./img/budding weed plant.jpg">
+        <img class="full-image" src="https://grast.wreet.co/{{ plant.journals[0].pictures[0] }}">
         <p>
-          Blue Dream, a sativa-dominant hybrid originating in California, has achieved 
-          legendary status among West Coast strains. Crossing a Blueberry indica with the 
-          sativa Haze, Blue Dream balances full-body relaxation with gentle cerebral 
-          invigoration. Novice and veteran consumers alike enjoy the level effects of 
-          Blue Dream, which ease you gently into a calm euphoria. Some Blue Dream 
-          phenotypes express a more indica-like look and feel, but the sativa-leaning 
+          Blue Dream, a sativa-dominant hybrid originating in California, has achieved
+          legendary status among West Coast strains. Crossing a Blueberry indica with the
+          sativa Haze, Blue Dream balances full-body relaxation with gentle cerebral
+          invigoration. Novice and veteran consumers alike enjoy the level effects of
+          Blue Dream, which ease you gently into a calm euphoria. Some Blue Dream
+          phenotypes express a more indica-like look and feel, but the sativa-leaning
           variety remains most prevalent.
         </p>
         <p>
           <a href="#" class="subdued">{{ plant.notifications.length }} Notification</a>
           <a href="#" class="subdued">5 Journals</a>
+
+          <a href="#" class="right subdued" style="font-size: 1.5em;"><i class="icon ion-trash-a"></i></a>
         </p>
       </div>
     </div><!-- end the card -->
-    
-    
+
+
   </ion-content>
 </ion-view>
