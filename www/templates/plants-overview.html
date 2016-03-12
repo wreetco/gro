@@ -15,7 +15,7 @@
         <a href="#/tab/plants/{{ plant._id.$oid }}" class="plant-link"></a>
         <div class="item item-dark plant-item-status-bar {{ (plant.status) ? plant.status : null }}">{{ plant.strain }}</div>
         <div class="item item-dark item-image">
-          <img ng-src="{{ plant.img }}" alt="weed yall">
+          <img src="https://grast.wreet.co/{{ plant.journals[0].pictures[0] }}" alt="weed yall">
         </div><!-- end image item div -->
         <p class="plant-footer">
           <a href="#" class="subdued">{{ plant.notifications.length }} <i class="icon ion-ios-information-outline"></i></a>
