@@ -6,7 +6,7 @@
         
         <h1>{{ equipment.name }}</h1>
         <p>
-					Date Added: {{ equipment.created_date | date : format : timezone }}<br>
+					Date Added: {{ equipment.created_date | date: 'longDate' : '+0700' }}<br>
 					Expected End Of Life: {{equipment.eol }}<br>
 					<br>
 					Description: {{ equipment.description }}<br>
