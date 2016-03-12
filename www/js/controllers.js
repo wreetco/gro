@@ -68,7 +68,7 @@ angular.module('starter.controllers', [])
 
   // update view
   $scope.refresh = function() {
-    $scope.plants = Plants.all();
+    $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
     $scope.$broadcast('scroll.refreshComplete');
   }
 
