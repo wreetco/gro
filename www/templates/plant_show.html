@@ -2,29 +2,25 @@
   <ion-content>
 
     <div class="list card">
-      <div class="item item-dark item-avatar">
+      <div class="item item-dark item-avatar" style="margin-bottom: 0;">
 
         <!--<img src="mcfly.jpg">-->
-        <span class="plant-view-status">jjk</span>
+        <span class="plant-view-status"></span>
 
         <h2>{{ plant.strain }}</h2>
-        <p>{{ plant.date_planted }}</p>
+        <p>Planted: {{ plant.date_planted | date: format : timezone }}</p>
       </div>
 
-      <div class="item item-dark item-body">
-        <img class="full-image" src="https://grast.wreet.co/{{ plant.journals[0].pictures[0] }}">
-        <p>
-          Blue Dream, a sativa-dominant hybrid originating in California, has achieved
-          legendary status among West Coast strains. Crossing a Blueberry indica with the
-          sativa Haze, Blue Dream balances full-body relaxation with gentle cerebral
-          invigoration. Novice and veteran consumers alike enjoy the level effects of
-          Blue Dream, which ease you gently into a calm euphoria. Some Blue Dream
-          phenotypes express a more indica-like look and feel, but the sativa-leaning
-          variety remains most prevalent.
+      <div class="item item-dark item-body" style="padding-top: 0 !important; margin-top: 0;">
+        <p class="center-text" style="height: 50vh; background-image: url('https://grast.wreet.co/{{ plant.journals[0].pictures[0] }}'); background-position: center center; background-repeat: no-repeat; margin-top: 0;">
+					&nbsp;
         </p>
+				<p>
+				 {{ plant.description }} lol I am a description!
+				</p>
         <p>
-          <a href="#" class="subdued">{{ plant.notifications.length }} Notification</a>
-          <a href="#" class="subdued">5 Journals</a>
+          <a href="#" class="subdued">{{ plant.notifications.length }} Notification(s)</a>
+          <a href="#" class="subdued">{{ plant.journals.length }} Journal(s)</a>
 
           <a href="#" class="right subdued" style="font-size: 1.5em;"><i class="icon ion-trash-a"></i></a>
         </p>
