@@ -88,6 +88,10 @@ textarea.dark {
   background-color: #12161a;
   min-height: 3em; }
 
+.upload-array {
+  display: flex;
+  flex-flow: row wrap; }
+
 .pic-placeholder {
   border: 2px solid #777;
   border-radius: 0.5em;
@@ -96,7 +100,9 @@ textarea.dark {
   height: 12em;
   position: relative;
   line-height: 12em;
-  overflow: hidden; }
+  overflow: hidden;
+  flex: 1 1 40%;
+  max-width: 50%; }
 
 .pic-placeholder:after {
   content: "+";

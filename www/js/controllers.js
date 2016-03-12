@@ -110,6 +110,9 @@ angular.module('starter.controllers', [])
     });
   } // end take photo
 
+  $scope.range = function(n) {
+    return new Array(n);
+  };
 
 }) // end plantsctrl
 

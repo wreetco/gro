@@ -11,13 +11,11 @@
           <input type="text" placeholder="Plant Date" ng-model="new_plant.planted_date">
         </label>
 
-        <div class="row">
-          <div class="col pic-placeholder" ng-click="takePhoto(0);">
-            <img src="" id="brad[0]" >
+        <div class="upload-array">
+          <div class="pic-placeholder" ng-repeat="i in range(new_plant.images.length + 1) track by $index" ng-click="takePhoto($index)">
+            <img src="" id="brad[{{ $index }}]">
           </div>
-          <div class="col pic-placeholder" ng-click="takePhoto(1);">
-            <img src="" id="brad[1]">
-          </div>
+          <!-- more pictures will be inswertart here -->
         </div>
 
         <br />
