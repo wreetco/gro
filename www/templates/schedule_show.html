@@ -1,0 +1,26 @@
+<ion-view view-title="{{ schedule.title }}">
+  <ion-content>
+    
+    <div class="list card">
+      <div class="item item-dark item-avatar">
+        
+        <h1>{{ schedule.title }}</h1>
+        <p>
+					Date Added: {{ schedule.created_date | date: 'longDate' : '+0700' }}<br>
+					Event Date: {{ schedule.event_date | date: 'longDate' : '+0700' }}<br>
+					<br>
+					Description: {{ schedule.text_field }}
+					<br>
+					<br>
+				</p>
+				<p>
+          <a href="#" class="subdued" style="font-size: 1.5em;"><i class="icon ion-edit"></i></a>
+					
+					<a ng-click="remove(schedule)" href="#" class="subdued" style="font-size: 1.5em;"><i class="icon ion-trash-a"></i></a>
+        </p>
+      </div>
+    </div><!-- end the card -->
+    
+    
+  </ion-content>
+</ion-view>

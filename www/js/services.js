@@ -193,19 +193,25 @@ angular.module('starter.services', [])
   			console.log(data);
     	});
     },
-    remove: function(equipment) {
-      notes.splice(notes.indexOf(note), 1);
-    },
-    get: function($scope, equipment_id) {
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/equipment").success(function(data, status) {
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]._id.$oid == equipment_id) {
-            $scope.equipment = data[i];
-          }
-        }
+		
+		remove: function(grow_id, equipment_id) {
+    	console.log('Equipment.remove');
+    	var d = $q.defer();
+    	// do the delete
+     	$http.delete("https://grast.wreet.co/" + grow_id + "/equipment/" + equipment_id).success(function(data, status) {
+				console.log('we got all up in that block so whoa');	
+       	d.resolve(data);
+     	});
+     	// give the promise back
+     	return d.promise;
+   	},
+		
+    get: function($scope, grow_id, equipment_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/equipment/' + equipment_id).success(function(data, status) {
+      	$scope.equipment = data;
       });
     },
-    save: function(equipment) {
+    save: function(grow_id, equipment) {
       var d = $q.defer();
       // post the note
       /*
@@ -220,7 +226,7 @@ angular.module('starter.services', [])
       console.log('equipment');
       console.log(req);
 
-      $http.post("http://192.168.1.140:4567/567893cec6f3605725000001/equipment/add", req).success(function(data, status) {
+      $http.post('https://grast.wreet.co/' + grow_id + '/equipment/add', req).success(function(data, status) {
         d.resolve({
           "data": data,
           "status": status
@@ -245,9 +251,9 @@ angular.module('starter.services', [])
 
   	}, // end all
 
-  	getPlantJournals: function(plant_id) {
+  	getPlantJournals: function(grow_id, plant_id) {
   	  var d = $q.defer();
-  	  $http.get("https://grast.wreet.co/56b55a2de449852a75000000/" + plant_id + "/journals").success(function(data, status) {
+  	  $http.get('https://grast.wreet.co/' + grow_id + '/' + plant_id + "/journals").success(function(data, status) {
   	    d.resolve(data);
   	  });
   	  return d.promise;
@@ -383,11 +389,60 @@ angular.module('starter.services', [])
   } // end that return brardbrah
 }) // end popup service
 
+// equipment factory yall
+.factory('Schedule', function($q, $http) {
+	return {
+    all: function($scope, grow_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/events').success(function(data, status) {
+  			$scope.schedule = data;
+  			console.log('we did it, hopefully');
+  			console.log(data);
+    	});
+    },
+		
+		remove: function(grow_id, schedule_id) {
+    	console.log('Schedule.remove');
+    	var d = $q.defer();
+    	// do the delete
+     	$http.delete("https://grast.wreet.co/" + grow_id + "/events/" + schedule_id).success(function(data, status) {
+				console.log('we got all up in that block so whoa');	
+       	d.resolve(data);
+     	});
+     	// give the promise back
+     	return d.promise;
+   	},
+		
+    get: function($scope, grow_id, schedule_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/events/' + schedule_id).success(function(data, status) {
+      	$scope.schedule = data;
+      });
+    },
+		//UIFASHNIUASNDFAUIHFOIANFOIASNIOCNASIODNAJBD JIAB CJIKASBNCJKAISN JKCBA SJK
+    save: function(grow_id, schedule) {
+      var d = $q.defer();
+			
+      var req = JSON.stringify({
+        "schedule": schedule
+      });
+
+      console.log('schedule');
+      console.log(req);
+
+      $http.post('https://grast.wreet.co/' + grow_id + '/events/add', req).success(function(data, status) {
+        d.resolve({
+          "data": data,
+          "status": status
+        });
+      }); // end note post
+
+      // send back the promise
+      return d.promise;
+    } // end save method
+  }
+
+})
+
+// end it
 
 // end it
 ;
-
-
-
-
-

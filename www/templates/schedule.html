@@ -1,5 +1,28 @@
 <ion-view view-title="Schedule">
   <ion-content class="padding">
-    hola horario
+		<ion-list>
+			<ion-item class="item-remove-animate item-dark item-avatar item-icon-right plant-item" ng-repeat="e in schedule | orderBy:category">
+				<a href="#/tab/schedule/{{ e._id.$oid }}" class="plant-link"></a>
+					<!--<i class="icon ion-alert assertive item-image"></i>-->
+					<h2>{{e.title}}</h2>
+					<p>
+						<!-- Description: {{e.description}}<br> -->
+						Created: {{ e.created_date | date : format : timezone }}<br>
+						Event Date: {{ e.even_date | date : format : timezone }}<br>
+						<!-- 
+						We should display this if it exists
+						We could do it color coded based on how soon the date is.
+						e.g displays red if EOL is tomorrow, green if it's next year
+
+						Expected EOL: {{e.eol}}<br> 
+						-->
+						Category: {{e.text_field}}
+					</p>
+					<i class="icon ion-chevron-right icon-accessory"></i>
+					<ion-option-button class="button-assertive" ng-click="remove(events)">
+						Delete
+					</ion-option-button>
+			</ion-item>
+		</ion-list>
   </ion-content>
 </ion-view>
