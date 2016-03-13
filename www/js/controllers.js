@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Plants, SessionService) {
-  //SessionService.store('grow_id', '56e32ac8e4498504a5000000');
   $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
 })
 
@@ -140,7 +139,7 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentCtrl', function($scope, Equipment, SessionService) {
+.controller('EquipmentCtrl', function($scope, $stateParams, Equipment, SessionService) {
   $scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
 
 	// update view
@@ -150,18 +149,36 @@ angular.module('starter.controllers', [])
 	}
   // delete a notification
   $scope.remove = function(equipment) {
-    Equipment.remove(equipment);
+    console.log("Controller equipment remove");
+		Equipment.remove(equipment);
   } // end remove method
 })
 // end the equipment view controller
-.controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment) {
-  $scope.equipment = Equipment.get($scope, $stateParams.equipment_id);
+.controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment, SessionService) {
+	  
+	$scope.equipment = Equipment.get($scope, SessionService.get('grow_id'), $stateParams.equipment_id);
 
-  $scope.lol = function() {
-    console.log('equipment is');
-    console.log($scope.equipment)
-  }
 }) // end the plantviewctrl
 
+
+.controller('ScheduleCtrl', function($scope, $stateParams, Event, SessionService) {
+  $scope.event = Events.all($scope, SessionService.get('grow_id'));
+
+	// update view
+  $scope.refresh = function($scope) {
+    $scope.event = Events.all($scope);
+    $scope.$broadcast('scroll.refreshComplete');
+	}
+  // delete a notification
+  $scope.remove = function(event) {
+    console.log("Controller event remove");
+		Events.remove(event);
+  } // end remove method
+})
+.controller('ScheduleViewCtrl', function($scope, $stateParams, Event, SessionService) {
+	  
+	$scope.event = Events.get($scope, SessionService.get('grow_id'), $stateParams.event_id);
+
+})
 
 ;

@@ -182,19 +182,25 @@ angular.module('starter.services', [])
   			console.log(data);
     	});
     },
-    remove: function(equipment) {
-      notes.splice(notes.indexOf(note), 1);
-    },
-    get: function($scope, equipment_id) {
-      $http.get("https://grast.wreet.co/56b55a2de449852a75000000/equipment").success(function(data, status) {
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]._id.$oid == equipment_id) {
-            $scope.equipment = data[i];
-          }
-        }
+		
+		remove: function(grow_id, equipment_id) {
+    	console.log('Equipment.remove');
+    	var d = $q.defer();
+    	// do the delete
+     	$http.delete("https://grast.wreet.co/" + grow_id + "/equipment/" + equipment_id).success(function(data, status) {
+				console.log('we got all up in that block so whoa');	
+       	d.resolve(data);
+     	});
+     	// give the promise back
+     	return d.promise;
+   	},
+		
+    get: function($scope, grow_id, equipment_id) {
+      $http.get('https://grast.wreet.co/' + grow_id + '/equipment/' + equipment_id).success(function(data, status) {
+      	$scope.equipment = data;
       });
     },
-    save: function(equipment) {
+    save: function(grow_id, equipment) {
       var d = $q.defer();
       // post the note
       /*
@@ -209,7 +215,7 @@ angular.module('starter.services', [])
       console.log('equipment');
       console.log(req);
 
-      $http.post("http://192.168.1.140:4567/567893cec6f3605725000001/equipment/add", req).success(function(data, status) {
+      $http.post('https://grast.wreet.co/' + grow_id + '/equipment/add', req).success(function(data, status) {
         d.resolve({
           "data": data,
           "status": status
@@ -234,9 +240,9 @@ angular.module('starter.services', [])
 
   	}, // end all
 
-  	getPlantJournals: function(plant_id) {
+  	getPlantJournals: function(grow_id, plant_id) {
   	  var d = $q.defer();
-  	  $http.get("https://grast.wreet.co/56b55a2de449852a75000000/" + plant_id + "/journals").success(function(data, status) {
+  	  $http.get('https://grast.wreet.co/' + grow_id + '/' + plant_id + "/journals").success(function(data, status) {
   	    d.resolve(data);
   	  });
   	  return d.promise;
