@@ -39,6 +39,13 @@ angular.module('starter.controllers', [])
       $scope.modal.show();
     });
   } // end keymodal method
+  
+  $scope.aboutModal = function() {
+    ModalService.getModal($scope, 'templates/_about_modal.html').then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  } // end aboutModal
 
   $scope.modifyKey = function() {
     SessionService.store('grow_id', $scope.auth.key);
@@ -89,7 +96,7 @@ angular.module('starter.controllers', [])
 
   // delete a plant
   $scope.remove = function(plant) {
-    Plants.remove(plant);
+   // console.log('fdfdf')
   } // end remove method
 
   // add a plant
@@ -132,11 +139,26 @@ angular.module('starter.controllers', [])
 }) // end plantsctrl
 
 // plant view control
-.controller('PlantViewCtrl', function($scope, $stateParams, Plants, SessionService) {
+.controller('PlantViewCtrl', function($scope, $stateParams, Plants, SessionService, PopupService) {
   Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
     console.log(plant);
     $scope.plant = plant;
   });
+  
+  $scope.remove = function() {
+    var confirm = PopupService.confirm('Delete Plant', 'Are you sure you want to delete this plant? This cannot be undone.');
+    confirm.then(function(res) {
+     if(res) {
+       // yes, delete the plant
+      var plant = $stateParams.plant_id;
+      Plants.remove(SessionService.get('grow_id'), plant);
+     } else {
+       // no, I don't know what I was thinking I would never hurt plant - I love plant
+       
+     } // end if/else 
+   }); // end confirm promise handling
+  } // end remove
+  
 }) // end the plantviewctrl
 
 // equipment view controller

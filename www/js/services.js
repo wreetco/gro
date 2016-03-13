@@ -111,8 +111,16 @@ angular.module('starter.services', [])
       });
     }, // end all method
 
-    remove: function(plant) {
-      plants.splice(plants.indexOf(plant), 1);
+    remove: function(grow_id, plant_id) {
+      console.log('Plants.remove');
+      var d = $q.defer();
+      // do the delete
+      $http.delete("https://grast.wreet.co/" + grow_id + "/plants/" + plant_id).success(function(data, status) {
+        console.log('we got all up in that block so whoa');
+        d.resolve(data);
+      });
+      // give the promise back
+      return d.promise;
     },
     get: function(grow_id, plant_id) {
       console.log('s.Plants.get');
@@ -360,6 +368,17 @@ angular.module('starter.services', [])
 })
 // end modal area
 
+.factory('PopupService', function($ionicPopup, $q) {
+  return {
+    confirm: function(ptitle, template_string) {
+      var popup = $ionicPopup.confirm({
+        title: ptitle,
+        template: template_string
+      });
+      return popup;
+    } // end confirm method
+  } // end that return brardbrah
+}) // end popup service
 
 
 // end it
