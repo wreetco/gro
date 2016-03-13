@@ -6,7 +6,6 @@ angular.module('starter.controllers', [])
 
 .controller('NotificationsCtrl', function($scope, Notifications, SessionService) {
   Notifications.all(SessionService.get('grow_id')).then(function(notifications) {
-    alert(SessionService.get('grow_id'));
     console.log('promise');
     console.log(notifications);
     $scope.notifications = notifications;
@@ -38,7 +37,7 @@ angular.module('starter.controllers', [])
       $scope.modal.show();
     });
   } // end keymodal method
-  
+
   $scope.aboutModal = function() {
     ModalService.getModal($scope, 'templates/_about_modal.html').then(function(modal) {
       $scope.modal = modal;
@@ -143,7 +142,7 @@ angular.module('starter.controllers', [])
     console.log(plant);
     $scope.plant = plant;
   });
-  
+
   $scope.remove = function() {
     var confirm = PopupService.confirm('Delete Plant', 'Are you sure you want to delete this plant? This cannot be undone.');
     confirm.then(function(res) {
@@ -153,11 +152,11 @@ angular.module('starter.controllers', [])
       Plants.remove(SessionService.get('grow_id'), plant);
      } else {
        // no, I don't know what I was thinking I would never hurt plant - I love plant
-       
-     } // end if/else 
+
+     } // end if/else
    }); // end confirm promise handling
   } // end remove
-  
+
 }) // end the plantviewctrl
 
 // equipment view controller
@@ -167,13 +166,13 @@ angular.module('starter.controllers', [])
   $scope.refresh = function($scope) {
     $scope.equipment = Equipment.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
-	}	
+	}
 })
 // end the equipment view controller
 .controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment, SessionService) {
-	  
+
 	$scope.equipment = Equipment.get($scope, SessionService.get('grow_id'), $stateParams.equipment_id);
-	
+
   $scope.remove = function(equipment) {
     console.log("Controller equipment remove");
 		Equipment.remove(SessionService.get('grow_id'), $stateParams.equipment_id);
@@ -192,7 +191,7 @@ angular.module('starter.controllers', [])
 })
 .controller('ScheduleViewCtrl', function($scope, $stateParams, Schedule, SessionService) {
 	$scope.schedule = Schedule.get($scope, SessionService.get('grow_id'), $stateParams.schedule_id);
-	
+
   // delete a notification
   $scope.remove = function(event) {
     console.log("Controller event remove");
