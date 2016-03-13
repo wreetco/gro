@@ -141,43 +141,41 @@ angular.module('starter.controllers', [])
 // equipment view controller
 .controller('EquipmentCtrl', function($scope, $stateParams, Equipment, SessionService) {
   $scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
-
 	// update view
   $scope.refresh = function($scope) {
     $scope.equipment = Equipment.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
-	}
-  // delete a notification
-  $scope.remove = function(equipment) {
-    console.log("Controller equipment remove");
-		Equipment.remove(equipment);
-  } // end remove method
+	}	
 })
 // end the equipment view controller
 .controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment, SessionService) {
 	  
 	$scope.equipment = Equipment.get($scope, SessionService.get('grow_id'), $stateParams.equipment_id);
+	
+  $scope.remove = function(equipment) {
+    console.log("Controller equipment remove");
+		Equipment.remove(SessionService.get('grow_id'), $stateParams.equipment_id);
+  } // end remove method
+})
 
-}) // end the plantviewctrl
 
-
-.controller('ScheduleCtrl', function($scope, $stateParams, Event, SessionService) {
-  $scope.event = Events.all($scope, SessionService.get('grow_id'));
+.controller('ScheduleCtrl', function($scope, $stateParams, Schedule, SessionService) {
+  $scope.schedule = Schedule.all($scope, SessionService.get('grow_id'));
 
 	// update view
   $scope.refresh = function($scope) {
-    $scope.event = Events.all($scope);
+    $scope.schedule = Schedule.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
 	}
+})
+.controller('ScheduleViewCtrl', function($scope, $stateParams, Schedule, SessionService) {
+	$scope.schedule = Schedule.get($scope, SessionService.get('grow_id'), $stateParams.schedule_id);
+	
   // delete a notification
   $scope.remove = function(event) {
     console.log("Controller event remove");
-		Events.remove(event);
+		Schedule.remove(SessionService.get('grow_id'), $stateParams.schedule_id);
   } // end remove method
-})
-.controller('ScheduleViewCtrl', function($scope, $stateParams, Event, SessionService) {
-	  
-	$scope.event = Events.get($scope, SessionService.get('grow_id'), $stateParams.event_id);
 
 })
 
