@@ -31,7 +31,6 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope, ModalService, SessionService) {
   // handle the grow key setting
-  //$scope.auth_key = SessionService.get('grow_id');
   $scope.auth = {key: SessionService.get('grow_id')};
   $scope.keyModal = function() {
     ModalService.getModal($scope, 'templates/_auth_key_modal.html').then(function(modal) {
