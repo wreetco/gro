@@ -7,6 +7,7 @@ angular.module('starter.controllers', [])
 
 .controller('NotificationsCtrl', function($scope, Notifications, SessionService) {
   Notifications.all(SessionService.get('grow_id')).then(function(notifications) {
+    alert(SessionService.get('grow_id'));
     console.log('promise');
     console.log(notifications);
     $scope.notifications = notifications;
@@ -14,7 +15,7 @@ angular.module('starter.controllers', [])
 
 	// update view
   $scope.refresh = function($scope) {
-    Notifications.all().then(function(notifications) {
+    Notifications.all(SessionService.get('grow_id')).then(function(notifications) {
       console.log('promise');
       console.log(notifications);
       $scope.notifications = notifications;

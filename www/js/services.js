@@ -4,7 +4,9 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
   return {
     all: function(grow_id) {
-      console.log('s.Notifications.all');
+      // get all of it
+      console.log('Notifications.all');
+      console.log('gid: ' + grow_id);
       // make a promise
       var d = $q.defer();
       // get the data
@@ -25,6 +27,7 @@ angular.module('starter.services', [])
 
   return {
     all: function(grow_id) {
+      console.log('Notes.all');
       var d = $q.defer();
       $http.get('https://grast.wreet.co/' + grow_id + '/notes').success(function(data, status) {
         d.resolve(data);
