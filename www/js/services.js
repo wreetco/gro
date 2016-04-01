@@ -138,7 +138,7 @@ angular.module('starter.services', [])
       var d = $q.defer();
       // do the delete
       $http.delete("https://grast.wreet.co/" + grow_id + "/plants/" + plant_id).success(function(data, status) {
-        console.log('we got all up in that block so whoa');
+        console.log('deleted plant');
         d.resolve(data);
       });
       // give the promise back
