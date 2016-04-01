@@ -390,8 +390,15 @@ angular.module('starter.services', [])
         template: template_string
       });
       return popup;
-    } // end confirm method
-  } // end that return brardbrah
+    }, // end confirm method
+  	alert: function(ptitle, template_string) {
+			var popup = $ionicPopup.alert({
+				title: ptitle,
+				template: template_string
+			});
+			return popup;
+		}
+	} // end that return brardbrah
 }) // end popup service
 
 // equipment factory yall

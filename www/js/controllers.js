@@ -29,7 +29,7 @@ angular.module('starter.controllers', [])
 
 }) // end notifications controller
 
-.controller('AccountCtrl', function($scope, ModalService, SessionService, $ionicPopup) {
+.controller('AccountCtrl', function($scope, ModalService, SessionService, PopupService) {
   // handle the grow key setting
   $scope.auth = {key: SessionService.get('grow_id')};
   $scope.keyModal = function() {
@@ -50,7 +50,8 @@ angular.module('starter.controllers', [])
     SessionService.store('grow_id', $scope.auth.key);
     $scope.modal.hide();
 		
-		$scope.showAlert();
+		
+    var alert = PopupService.alert('Key Set', 'Your key was successfully set.');
   } // end modifyKey method
 
 	
@@ -73,7 +74,7 @@ angular.module('starter.controllers', [])
 }) // end schedulectrl
 
 // notes shizznit
-.controller('NotesCtrl', function($scope, $state, Notes, SessionService, $ionicPopup) {
+.controller('NotesCtrl', function($scope, $state, Notes, SessionService, PopupService) {
   // do them, do them now
   Notes.all(SessionService.get('grow_id')).then(function(res) {
     $scope.notes = res;
@@ -89,20 +90,9 @@ angular.module('starter.controllers', [])
       console.log('NotesCtrl.saveNote');
       console.log(res);
     });
-		$scope.showAlert();
+    var alert = PopupService.alert('Add Note', 'Note successfully added.');
   } // end save
 
-	$scope.showAlert = function() {
-
-		var alertPopup = $ionicPopup.alert({
-			 title: 'Add Note',
-			 template: 'Note successfully added'
-		});
-
-		alertPopup.then(function(res) {
-			 // Custom functionality....
-		});
-  };
 }) // end notesCtrl
 
 // note view control
@@ -111,7 +101,7 @@ angular.module('starter.controllers', [])
 }) // end the notviewctrl
 
 // plants controllers
-.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService, $ionicPopup) {
+.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService, PopupService) {
   $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
   // update view
   $scope.refresh = function() {
@@ -138,7 +128,7 @@ angular.module('starter.controllers', [])
         });
       } // end image iteration
     });
-		$scope.showAlert();
+    var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
   } // end savePlant
 
 	
@@ -163,19 +153,6 @@ angular.module('starter.controllers', [])
   $scope.range = function(n) {
     return new Array(n);
   };
-
-	$scope.showAlert = function() {
-	
-      var alertPopup = $ionicPopup.alert({
-         title: 'Add Plant',
-         template: 'Plant successfully added'
-      });
-
-      alertPopup.then(function(res) {
-         // Custom functionality....
-      });
-   };
-
 	
 }) // end plantsctrl
 
