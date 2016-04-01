@@ -29,7 +29,7 @@ angular.module('starter.controllers', [])
 
 }) // end notifications controller
 
-.controller('AccountCtrl', function($scope, ModalService, SessionService) {
+.controller('AccountCtrl', function($scope, ModalService, SessionService, $ionicPopup) {
   // handle the grow key setting
   $scope.auth = {key: SessionService.get('grow_id')};
   $scope.keyModal = function() {
@@ -49,8 +49,22 @@ angular.module('starter.controllers', [])
   $scope.modifyKey = function() {
     SessionService.store('grow_id', $scope.auth.key);
     $scope.modal.hide();
+		
+		$scope.showAlert();
   } // end modifyKey method
 
+	
+	$scope.showAlert = function() {
+
+		var alertPopup = $ionicPopup.alert({
+			 title: 'Add Authorization Key',
+			 template: 'Key successfully set'
+		});
+
+		alertPopup.then(function(res) {
+			 // Custom functionality....
+		});
+  };
 }) // end accountctrl
 
 .controller('ScheduleCtrl', function($scope) {
@@ -59,7 +73,7 @@ angular.module('starter.controllers', [])
 }) // end schedulectrl
 
 // notes shizznit
-.controller('NotesCtrl', function($scope, $state, Notes, SessionService) {
+.controller('NotesCtrl', function($scope, $state, Notes, SessionService, $ionicPopup) {
   // do them, do them now
   Notes.all(SessionService.get('grow_id')).then(function(res) {
     $scope.notes = res;
@@ -75,8 +89,20 @@ angular.module('starter.controllers', [])
       console.log('NotesCtrl.saveNote');
       console.log(res);
     });
+		$scope.showAlert();
   } // end save
 
+	$scope.showAlert = function() {
+
+		var alertPopup = $ionicPopup.alert({
+			 title: 'Add Note',
+			 template: 'Note successfully added'
+		});
+
+		alertPopup.then(function(res) {
+			 // Custom functionality....
+		});
+  };
 }) // end notesCtrl
 
 // note view control
@@ -85,7 +111,7 @@ angular.module('starter.controllers', [])
 }) // end the notviewctrl
 
 // plants controllers
-.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService) {
+.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService, $ionicPopup) {
   $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
   // update view
   $scope.refresh = function() {
@@ -112,8 +138,11 @@ angular.module('starter.controllers', [])
         });
       } // end image iteration
     });
+		$scope.showAlert();
   } // end savePlant
 
+	
+	
   // plants need a photo
   $scope.takePhoto = function(brad_index) {
     var options = {
@@ -135,6 +164,19 @@ angular.module('starter.controllers', [])
     return new Array(n);
   };
 
+	$scope.showAlert = function() {
+	
+      var alertPopup = $ionicPopup.alert({
+         title: 'Add Plant',
+         template: 'Plant successfully added'
+      });
+
+      alertPopup.then(function(res) {
+         // Custom functionality....
+      });
+   };
+
+	
 }) // end plantsctrl
 
 // plant view control
