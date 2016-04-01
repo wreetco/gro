@@ -142,9 +142,10 @@ angular.module('starter.controllers', [])
         });
       } // end image iteration
       //Let them know the plant has been added
-      var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
       //Go back to plants overview
+			$scope.plants = Plants.all($scope, SessionService.get('grow_id'));
       $state.go('tab.plants');
+      var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
     });
 
   } // end savePlant
