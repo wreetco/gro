@@ -4,8 +4,10 @@
 
     <div class="list card">
       <div class="item item-dark item-avatar" style="margin-bottom: 0;">
-				
-        <span class="plant-view-status"></span>
+
+        <span class="plant-view-status">
+          <i class="icon ion-record"></i>
+        </span>
 
         <h2>{{ plant.strain }}</h2>
         <p>Planted: {{ plant.date_planted | date: 'longDate' : '+0700'}}</p>

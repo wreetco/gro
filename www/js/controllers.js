@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
 }) // end plantsctrl
 
 // plant view control
-.controller('PlantViewCtrl', function($scope, $stateParams, Plants, SessionService, PopupService) {
+.controller('PlantViewCtrl', function($scope, $stateParams, $state, Plants, SessionService, PopupService) {
   Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
     console.log(plant);
     $scope.plant = plant;
@@ -151,6 +151,8 @@ angular.module('starter.controllers', [])
        // yes, delete the plant
       var plant = $stateParams.plant_id;
       Plants.remove(SessionService.get('grow_id'), plant);
+      // lessgo
+      $state.go('tab.plants');
      } else {
        // no, I don't know what I was thinking I would never hurt plant - I love plant
 

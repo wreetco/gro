@@ -83,7 +83,7 @@ $dark:                            #444 !default;
   transition: all 0.2s ease-in-out; }
 
 .floating-action-button .icon {
-  font-size: 1.5em; }
+  font-size: 1.25em; }
 
 .floating-action-button:hover {
   box-shadow: 0px 0px 12px 4px  #777;
@@ -129,8 +129,13 @@ textarea.dark {
   left: 16px;
   top: 16px;
   height: 40px;
-  width: 40px;
-  border: 1px solid orange; }
+  line-height: 40px;
+  text-align: center;
+  width: 40px; }
+
+.plant-view-status i {
+  color: #00ed4c;
+  font-size: 24px; }
 
 .plant-footer {
   padding: 10px; }
