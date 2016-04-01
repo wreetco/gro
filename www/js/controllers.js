@@ -91,7 +91,11 @@ angular.module('starter.controllers', [])
   });
 
   $scope.remove = function(note) {
-    Notes.remove(note);
+    Notes.remove(SessionService.get('grow_id'), note).then(function(res) {
+      Notes.all(SessionService.get('grow_id')).then(function(res) {
+        $scope.notes = res;
+      });
+    });
   } // end remove
 
   $scope.new_note = {};

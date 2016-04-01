@@ -39,8 +39,15 @@ angular.module('starter.services', [])
     	});
       return d.promise;
     },
-    remove: function(note) {
-      notes.splice(notes.indexOf(note), 1);
+    remove: function(grow_id, note) {
+      console.log('note.remove');
+      console.log(note);
+      var d = $q.defer();
+      $http.delete("https://grast.wreet.co/" + grow_id + "/notes/" + note._id.$oid).success(function(data, status) {
+        console.log('we got all up in that block so whoa');
+        d.resolve(data);
+      });
+      return d.promise;
     },
     get: function($scope, grow_id, note_id) {
       $http.get("https://grast.wreet.co/" + grow_id + "/notes").success(function(data, status) {
