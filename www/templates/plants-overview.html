@@ -15,7 +15,7 @@
         <a href="#/tab/plants/{{ plant._id.$oid }}" class="plant-link"></a>
         <div class="item item-dark plant-item-status-bar {{ (plant.status) ? plant.status : null }}">{{ plant.strain }}</div>
         <div class="item item-dark item-image">
-          <img src="https://grast.wreet.co/{{ plant.journals[0].pictures[0] }}" alt="weed yall">
+          <img src="https://grast.wreet.co/{{ (plant.journals[0].pictures[0]) ? plant.journals[0].pictures[0] : 'assets/mj_grey.png' }}" alt="weed yall">
         </div><!-- end image item div -->
         <p class="plant-footer">
           <a href="#" class="subdued">{{ plant.notifications.length }} <i class="icon ion-ios-information-outline"></i></a>
@@ -25,7 +25,7 @@
     </div><!-- end row -->
 
   </ion-content>
-	
+
 
     <div class="floating-action-button">
       <i class="icon ion-plus" ui-sref="tab.new-plant"></i>
