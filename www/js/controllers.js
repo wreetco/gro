@@ -138,7 +138,10 @@ angular.module('starter.controllers', [])
         });
       } // end image iteration
     });
+		//Let them know the plant has been added
     var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
+		//Go back to plants overview
+		$state.go('tab.plants');
   } // end savePlant
 
 
