@@ -18,7 +18,7 @@ angular.module('starter.services', [])
   	},
     remove: function(grow_id, notification) {
       var d = $q.defer();
-      $http.delete('https://grast.wreet.co' + grow_id + '/notifications/' + notification_id).success(function(data, status) {
+      $http.delete('https://grast.wreet.co/' + grow_id + '/notifications/' + notification._id.$oid).success(function(data, status) {
         console.log('resuleving the promise brah');
         d.resolve(data);
       });
@@ -102,8 +102,6 @@ angular.module('starter.services', [])
             row.push(data[i]);
           }
         }
-        console.log('here are those fuckers');
-        console.log(plants);
         // now that we have a list of plants lets get the notifications for each
         Notifications.all().then(function(notifications) {
           // we need to go through each plant, and collect their notifications

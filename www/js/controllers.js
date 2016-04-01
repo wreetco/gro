@@ -21,9 +21,13 @@ angular.module('starter.controllers', [])
 
     $scope.$broadcast('scroll.refreshComplete');
 	}
-  // delete a notification
+  // delete a notification, update the list
   $scope.remove = function(notification) {
-    Notifications.remove(SessionService.get('grow_id'), notification);
+    Notifications.remove(SessionService.get('grow_id'), notification).then(function(res) {
+      Notifications.all(SessionService.get('grow_id')).then(function(notifications) {
+        $scope.notifications = notifications;
+      });
+    });
   } // end remove method
 
 }) // end notifications controller
