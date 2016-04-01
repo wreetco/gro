@@ -88,6 +88,11 @@ angular.module('starter.services', [])
         var row = [];
         for (var i = 0; i < data.length; i++) {
           plants_noformat.push(data[i]);
+          if (i == data.length - 1) {
+            row.push(data[i]);
+            plants.push(row);
+            break;
+          }
           if (i % 2 != 0) {
             row.push(data[i]);
             plants.push(row);
@@ -97,6 +102,8 @@ angular.module('starter.services', [])
             row.push(data[i]);
           }
         }
+        console.log('here are those fuckers');
+        console.log(plants);
         // now that we have a list of plants lets get the notifications for each
         Notifications.all().then(function(notifications) {
           // we need to go through each plant, and collect their notifications
@@ -113,6 +120,8 @@ angular.module('starter.services', [])
             }
           } // end plant iteration
         }); // end get notifications
+        console.log("plants_noformat: " + plants_noformat.length);
+        console.log(plants_noformat);
         $scope.plants = plants;
         $scope.plants_noformat = plants_noformat;
         console.log('dfd');

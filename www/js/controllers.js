@@ -23,7 +23,6 @@ angular.module('starter.controllers', [])
 	}
   // delete a notification
   $scope.remove = function(notification) {
-    alert(notification);
     Notifications.remove(SessionService.get('grow_id'), notification);
   } // end remove method
 
@@ -45,7 +44,7 @@ angular.module('starter.controllers', [])
       $scope.modal.show();
     });
   } // end aboutModal
-	
+
 	$scope.supportModal = function() {
     ModalService.getModal($scope, 'templates/_support_modal.html').then(function(modal) {
       $scope.modal = modal;
@@ -56,12 +55,12 @@ angular.module('starter.controllers', [])
   $scope.modifyKey = function() {
     SessionService.store('grow_id', $scope.auth.key);
     $scope.modal.hide();
-		
-		
+
+
     var alert = PopupService.alert('Key Set', 'Your key was successfully set.');
   } // end modifyKey method
 
-	
+
 	$scope.showAlert = function() {
 
 		var alertPopup = $ionicPopup.alert({
@@ -138,8 +137,8 @@ angular.module('starter.controllers', [])
     var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
   } // end savePlant
 
-	
-	
+
+
   // plants need a photo
   $scope.takePhoto = function(brad_index) {
     var options = {
@@ -160,7 +159,7 @@ angular.module('starter.controllers', [])
   $scope.range = function(n) {
     return new Array(n);
   };
-	
+
 }) // end plantsctrl
 
 // plant view control
