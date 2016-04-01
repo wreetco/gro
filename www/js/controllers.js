@@ -45,6 +45,13 @@ angular.module('starter.controllers', [])
       $scope.modal.show();
     });
   } // end aboutModal
+	
+	$scope.supportModal = function() {
+    ModalService.getModal($scope, 'templates/_support_modal.html').then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  } // end aboutModal
 
   $scope.modifyKey = function() {
     SessionService.store('grow_id', $scope.auth.key);
