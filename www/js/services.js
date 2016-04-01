@@ -16,8 +16,13 @@ angular.module('starter.services', [])
     	// return to the promise
     	return d.promise;
   	},
-    remove: function($scope, notification) {
-      notifications.splice(notifications.indexOf(notification), 1);
+    remove: function(grow_id, notification) {
+      var d = $q.defer();
+      $http.delete('https://grast.wreet.co' + grow_id + '/notifications/' + notification_id).success(function(data, status) {
+        console.log('resuleving the promise brah');
+        d.resolve(data);
+      });
+      return d.promise;
     }
 	}
 })
@@ -193,19 +198,19 @@ angular.module('starter.services', [])
   			console.log(data);
     	});
     },
-		
+
 		remove: function(grow_id, equipment_id) {
     	console.log('Equipment.remove');
     	var d = $q.defer();
     	// do the delete
      	$http.delete("https://grast.wreet.co/" + grow_id + "/equipment/" + equipment_id).success(function(data, status) {
-				console.log('we got all up in that block so whoa');	
+				console.log('we got all up in that block so whoa');
        	d.resolve(data);
      	});
      	// give the promise back
      	return d.promise;
    	},
-		
+
     get: function($scope, grow_id, equipment_id) {
       $http.get('https://grast.wreet.co/' + grow_id + '/equipment/' + equipment_id).success(function(data, status) {
       	$scope.equipment = data;
@@ -399,19 +404,19 @@ angular.module('starter.services', [])
   			console.log(data);
     	});
     },
-		
+
 		remove: function(grow_id, schedule_id) {
     	console.log('Schedule.remove');
     	var d = $q.defer();
     	// do the delete
      	$http.delete("https://grast.wreet.co/" + grow_id + "/events/" + schedule_id).success(function(data, status) {
-				console.log('we got all up in that block so whoa');	
+				console.log('we got all up in that block so whoa');
        	d.resolve(data);
      	});
      	// give the promise back
      	return d.promise;
    	},
-		
+
     get: function($scope, grow_id, schedule_id) {
       $http.get('https://grast.wreet.co/' + grow_id + '/events/' + schedule_id).success(function(data, status) {
       	$scope.schedule = data;
@@ -420,7 +425,7 @@ angular.module('starter.services', [])
 		//UIFASHNIUASNDFAUIHFOIANFOIASNIOCNASIODNAJBD JIAB CJIKASBNCJKAISN JKCBA SJK
     save: function(grow_id, schedule) {
       var d = $q.defer();
-			
+
       var req = JSON.stringify({
         "schedule": schedule
       });

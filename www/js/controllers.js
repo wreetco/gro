@@ -23,7 +23,8 @@ angular.module('starter.controllers', [])
 	}
   // delete a notification
   $scope.remove = function(notification) {
-    Notifications.remove(notification);
+    alert(notification);
+    Notifications.remove(SessionService.get('grow_id'), notification);
   } // end remove method
 
 }) // end notifications controller
