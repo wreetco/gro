@@ -115,8 +115,10 @@ angular.module('starter.controllers', [])
 }) // end the notviewctrl
 
 // plants controllers
-.controller('PlantsCtrl', function($scope, $state, Plants, Camera, Journals, SessionService, PopupService) {
-  $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
+.controller('PlantsCtrl', function($rootScope, $scope, $state, Plants, Camera, Journals, SessionService, PopupService) {
+  Plants.all($scope, SessionService.get('grow_id'));
+  $rootScope.$plant_scope = $scope;
+  console.log($rootScope);
   // update view
   $scope.refresh = function() {
     $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
@@ -175,7 +177,7 @@ angular.module('starter.controllers', [])
 }) // end plantsctrl
 
 // plant view control
-.controller('PlantViewCtrl', function($scope, $stateParams, $state, Plants, SessionService, PopupService) {
+.controller('PlantViewCtrl', function($rootScope, $scope, $stateParams, $state, Plants, SessionService, PopupService) {
   Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
     console.log(plant);
     $scope.plant = plant;
@@ -187,7 +189,9 @@ angular.module('starter.controllers', [])
      if(res) {
        // yes, delete the plant
       var plant = $stateParams.plant_id;
-      Plants.remove(SessionService.get('grow_id'), plant);
+      Plants.remove(SessionService.get('grow_id'), plant).then(function(res) {
+        Plants.all($rootScope.$plant_scope, SessionService.get('grow_id'));
+      });
       // lessgo
       $state.go('tab.plants');
      } else {
