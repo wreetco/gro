@@ -23,8 +23,10 @@
         <p>
           <a href="#" class="subdued">{{ plant.notifications.length }} Notification(s)</a>
           <a href="#" class="subdued">{{ plant.journals.length }} Journal(s)</a>
-
-          <a class="right subdued" style="font-size: 2em;" ng-click="remove()"><i class="icon ion-trash-a"></i></a>
+					<span class="right">
+          	<a ng-click="dosomething()" class="subdued" style="font-size: 1.5em;"><i class="icon ion-edit"></i></a>
+          	<a ng-click="remove()" class="subdued" style="font-size: 2em;"><i class="icon ion-trash-a"></i></a>
+					</span>
         </p>
       </div>
     </div><!-- end the card -->
