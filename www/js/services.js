@@ -210,11 +210,16 @@ angular.module('starter.services', [])
 .factory('Equipment', function($q, $http) {
 	return {
     all: function($scope, grow_id) {
+			var d = $q.defer();
+			
       $http.get('https://grast.wreet.co/' + grow_id + '/equipment').success(function(data, status) {
   			$scope.equipment = data;
   			console.log('we did it, hopefully');
   			console.log(data);
+				d.resolve(data);
     	});
+			
+			return d.promise;
     },
 
 		remove: function(grow_id, equipment_id) {

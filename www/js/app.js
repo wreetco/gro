@@ -188,6 +188,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+	
+	.state('tab.new-equipment', {
+    url: '/plant/new',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/equipment_new.html',
+        controller: 'EquipmentCtrl'
+      }
+    }
+  })
 
   ; // end stateProvider
 

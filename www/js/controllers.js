@@ -208,14 +208,36 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentCtrl', function($rootScope, $scope, $stateParams, Equipment, SessionService) {
-  $scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
-	$rootScope.$equipmunk = $scope;
+.controller('EquipmentCtrl', function($rootScope, $scope, $state, $stateParams, Equipment, SessionService, PopupService) {
+	$scope.$on('$ionicView.enter', function() {
+    // code to run each time view is entered
+		$scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
+	});
+  if (!$scope.equipment)
+		Equipment.all($scope, SessionService.get('grow_id'));
+  $rootScope.$equipment_scope = $scope;
+	
+	//$scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
+	//$rootScope.$equipment = $scope;
 	// update view
   $scope.refresh = function($scope) {
     $scope.equipment = Equipment.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
 	}
+	
+	 // add a plant
+  $scope.new_equipment = {};
+  $scope.saveEquipment = function() {
+    Equipment.save(SessionService.get('grow_id'), $scope.new_equipment).then(function(res) {
+      console.log(res);
+      //Let them know the plant has been added
+      //Go back to plants overview
+			var alert = PopupService.alert('Add Equipment', 'Added equipment successfully.');
+			Equipment.all($scope, SessionService.get('grow_id')).then(function(res) {
+				$state.go('tab.equipment', {}, {reload: true});
+			});
+    });
+  } // end savePlant
 })
 // end the equipment view controller
 .controller('EquipmentViewCtrl', function($rootScope, $scope, $stateParams, $state, Equipment, SessionService, PopupService) {
@@ -233,7 +255,7 @@ angular.module('starter.controllers', [])
        // yes, delete the plant
       var equipment = $stateParams.equipment_id;
       Equipment.remove(SessionService.get('grow_id'), equipment).then(function(res) {
-        Equipment.all($rootScope.$equipmunk, SessionService.get('grow_id'));
+        Equipment.all($rootScope.$equipment, SessionService.get('grow_id'));
       });
       // lessgo
       $state.go('tab.equipment');
