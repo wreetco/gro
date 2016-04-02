@@ -3,8 +3,15 @@
   <ion-content class="">
     
     <div class="card">
-      <div class="item item-dark item-text-wrap">
-        {{ note.text_field }}
+      <div style="padding: 1em;">
+				<p>
+        	{{ note.text_field }}
+				</p>
+				<p>
+          <a href="#" class="subdued" style="font-size: 1.5em;"><i class="icon ion-edit"></i></a>
+					
+					<a ng-click="remove(schedule)" href="#" class="subdued" style="font-size: 1.5em;"><i class="icon ion-trash-a"></i></a>
+        </p>
       </div>
     </div>
     
