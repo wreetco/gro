@@ -116,9 +116,14 @@ angular.module('starter.controllers', [])
 
 // plants controllers
 .controller('PlantsCtrl', function($rootScope, $scope, $state, Plants, Camera, Journals, SessionService, PopupService) {
-  Plants.all($scope, SessionService.get('grow_id'));
+	$scope.$on('$ionicView.enter', function() {
+    // code to run each time view is entered
+		Plants.all($scope, SessionService.get('grow_id'));
+	});
+	
+  if (!$scope.plants)
+		Plants.all($scope, SessionService.get('grow_id'));
   $rootScope.$plant_scope = $scope;
-  console.log($rootScope);
   // update view
   $scope.refresh = function() {
     $scope.plants = Plants.all($scope, SessionService.get('grow_id'));
@@ -133,8 +138,6 @@ angular.module('starter.controllers', [])
   // add a plant
   $scope.new_plant = {images: []};
   $scope.savePlant = function() {
-    console.log('newplant');
-    console.log($scope.new_plant);
     Plants.save(SessionService.get('grow_id'), $scope.new_plant).then(function(res) {
       console.log(res);
       for (var b = 0; b < $scope.new_plant.images.length; b++) {
@@ -145,11 +148,14 @@ angular.module('starter.controllers', [])
       } // end image iteration
       //Let them know the plant has been added
       //Go back to plants overview
-			$scope.plants = Plants.all($scope, SessionService.get('grow_id'));
-      $state.go('tab.plants');
-      var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
+			var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
+			Plants.all($scope, SessionService.get('grow_id')).then(function(res) {
+				console.log('new scope');
+				console.log($scope.plants);
+				$state.go('tab.plants', {}, {reload: true});
+			});
     });
-
+		$scope.new_plant = {images: []};
   } // end savePlant
 
 

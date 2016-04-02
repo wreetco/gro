@@ -5,10 +5,14 @@ angular.module('starter.services', [])
   return {
     all: function(grow_id) {
       // get all of it
+			// make a promise
+      var d = $q.defer();
+			if (!grow_id) {
+				d.resolve('not ready to get notifications');
+				return d.promise;
+			}
       console.log('Notifications.all');
       console.log('gid: ' + grow_id);
-      // make a promise
-      var d = $q.defer();
       // get the data
 			$http.get('https://grast.wreet.co/' + grow_id + '/notifications').success(function(data, status) {
 				d.resolve(data);
@@ -89,11 +93,12 @@ angular.module('starter.services', [])
 
   return {
     all: function($scope, grow_id) {
+			var d = $q.defer();
       $http.get("https://grast.wreet.co/" + grow_id + "/plants").success(function(data, status) {
         var plants = [];
         var plants_noformat = [];
         var row = [];
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {		
           plants_noformat.push(data[i]);
           if (i == data.length - 1) {
             row.push(data[i]);
@@ -124,13 +129,12 @@ angular.module('starter.services', [])
               // done
             }
           } // end plant iteration
+					$scope.plants = plants;
+					$scope.plants_noformat = plants_noformat;
+					d.resolve(plants_noformat);
         }); // end get notifications
-        console.log("plants_noformat: " + plants_noformat.length);
-        console.log(plants_noformat);
-        $scope.plants = plants;
-        $scope.plants_noformat = plants_noformat;
-        console.log('dfd');
       });
+			return d.promise;
     }, // end all method
 
     remove: function(grow_id, plant_id) {
