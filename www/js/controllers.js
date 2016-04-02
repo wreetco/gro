@@ -208,8 +208,9 @@ angular.module('starter.controllers', [])
 }) // end the plantviewctrl
 
 // equipment view controller
-.controller('EquipmentCtrl', function($scope, $stateParams, Equipment, SessionService) {
+.controller('EquipmentCtrl', function($rootScope, $scope, $stateParams, Equipment, SessionService) {
   $scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
+	$rootScope.$equipmunk = $scope;
 	// update view
   $scope.refresh = function($scope) {
     $scope.equipment = Equipment.all($scope);
@@ -217,14 +218,32 @@ angular.module('starter.controllers', [])
 	}
 })
 // end the equipment view controller
-.controller('EquipmentViewCtrl', function($scope, $stateParams, Equipment, SessionService) {
+.controller('EquipmentViewCtrl', function($rootScope, $scope, $stateParams, $state, Equipment, SessionService, PopupService) {
 
 	$scope.equipment = Equipment.get($scope, SessionService.get('grow_id'), $stateParams.equipment_id);
+  //$scope.remove = function(equipment) {
+  //  console.log("Controller equipment remove");
+	//	Equipment.remove(SessionService.get('grow_id'), $stateParams.equipment_id);
+  //} // end remove method
+	
+	$scope.remove = function() {
+    var confirm = PopupService.confirm('Delete Equipment', 'Are you sure you want to delete this equipment? This cannot be undone.');
+    confirm.then(function(res) {
+     if(res) {
+       // yes, delete the plant
+      var equipment = $stateParams.equipment_id;
+      Equipment.remove(SessionService.get('grow_id'), equipment).then(function(res) {
+        Equipment.all($rootScope.$equipmunk, SessionService.get('grow_id'));
+      });
+      // lessgo
+      $state.go('tab.equipment');
+     } else {
+       // no, I don't know what I was thinking I would never hurt plant - I love plant
 
-  $scope.remove = function(equipment) {
-    console.log("Controller equipment remove");
-		Equipment.remove(SessionService.get('grow_id'), $stateParams.equipment_id);
-  } // end remove method
+     } // end if/else
+   }); // end confirm promise handling
+  } // end remove
+	
 })
 
 
