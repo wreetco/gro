@@ -142,7 +142,6 @@ angular.module('starter.controllers', [])
       console.log(res);
       for (var b = 0; b < $scope.new_plant.images.length; b++) {
         Journals.addJournalPhoto(SessionService.get('grow_id'), res.plant_id, res.journal_id, $scope.new_plant.images[b]).then(function(res) {
-          console.log('from the journal fucked up thing in the controller');
           console.log(res);
         });
       } // end image iteration
@@ -150,8 +149,6 @@ angular.module('starter.controllers', [])
       //Go back to plants overview
 			var alert = PopupService.alert('Add Plant', 'Added plant successfully.');
 			Plants.all($scope, SessionService.get('grow_id')).then(function(res) {
-				console.log('new scope');
-				console.log($scope.plants);
 				$state.go('tab.plants', {}, {reload: true});
 			});
     });

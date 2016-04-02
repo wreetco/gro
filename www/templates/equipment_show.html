@@ -1,9 +1,8 @@
 <ion-view view-title="{{ equipment.name }}">
   <ion-content>
     
-    <div class="list card">
-      <div class="item item-dark item-avatar">
-        
+    <div class="card">
+    	<div style="padding: 1em;">
         <h1>{{ equipment.name }}</h1>
         <p>
 					Date Added: {{ equipment.created_date | date: 'longDate' : '+0700' }}<br>
@@ -18,7 +17,7 @@
 					
 					<a ng-click="remove(equipment)" class="subdued" style="font-size: 1.5em;"><i class="icon ion-trash-a"></i></a>
         </p>
-      </div>
+			</div>
     </div><!-- end the card -->
     
     
