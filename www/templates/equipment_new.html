@@ -1,0 +1,27 @@
+<ion-view view-title="Add Equipment">
+  <ion-content class="">
+    <div id="add-equipment">
+      <div class="list">
+        <label class="item item-dark item-input item-floating-label">
+          <span class="input-label">Name</span>
+          <input type="text" placeholder="Name" ng-model="new_equipment.name">
+        </label>
+        <label class="item item-dark item-input item-floating-label">
+          <span class="input-label">Created Date</span>
+          <input type="text" placeholder="Created Date" onfocus="(this.type='date')" onblur="(this.type='text')" ng-model="new_equipment.created_date" >
+        </label>
+				<label class="item item-dark item-input item-floating-label">
+          <span class="input-label">Description</span>
+          <input type="text" placeholder="Description" ng-model="new_equipment.description">
+        </label>
+
+        <br />
+        <div class="center-text">
+          <button class="button button-calm" ng-click="saveEquipment()">
+            <span class="dark">Save</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
