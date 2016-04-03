@@ -6,7 +6,7 @@
       <div class="item item-dark item-avatar" style="margin-bottom: 0;">
 
         <span class="plant-view-status">
-          <i class="icon ion-record"></i>
+          <i class="icon ion-record" style="color: {{ (plant.notifications.length > 0) ? 'yellow' : '#00ED4C' }} !important;"></i>
         </span>
 
         <h2>{{ plant.strain }}</h2>

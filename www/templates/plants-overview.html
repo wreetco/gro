@@ -13,7 +13,7 @@
     <div ng-repeat="row in plants" class="row">
       <div class="col col-50 plant-item" ng-repeat="plant in row">
         <a href="#/tab/plants/{{ plant._id.$oid }}" class="plant-link"></a>
-        <div class="item item-dark plant-item-status-bar {{ (plant.status) ? plant.status : null }}">{{ plant.strain }}</div>
+        <div class="item item-dark plant-item-status-bar {{ (plant.notifications.length > 0) ? 'status-yellow' : 'status-green' }}">{{ plant.strain }}</div>
         <div class="item item-dark item-image">
           <img src="https://grast.wreet.co/{{ (plant.journals[0].pictures[0]) ? plant.journals[0].pictures[0] : 'assets/mj_grey.png' }}" alt="weed yall">
         </div><!-- end image item div -->
