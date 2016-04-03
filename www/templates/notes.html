@@ -8,7 +8,7 @@
         <p>
           {{ note.text }}
           <br />
-          {{ note.created_date }}
+          {{ note.created_date | date: 'medium' : '+0700' }}
         </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
         <ion-option-button class="button-assertive" ng-click="remove(note)">

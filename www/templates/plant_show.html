@@ -14,9 +14,10 @@
       </div>
 
       <div class="item item-dark item-body" style="padding-top: 0 !important; margin-top: 0;">
-        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+				
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="0">
           <ion-slide class="plant_img" ng-repeat="pic in plant.journals[0].pictures">
-            <img src="https://grast.wreet.co/{{ pic }}" />
+            <img src="https://grast.wreet.co/{{ pic }}" id="{{pic}}" />
           </ion-slide>
         </ion-slide-box>
 				<p>

@@ -7,7 +7,7 @@
         <h1>{{ schedule.title }}</h1>
         <p>
 					Date Added: {{ schedule.created_date | date: 'longDate' : '+0700' }}<br>
-					Event Date: {{ schedule.event_date | date: 'longDate' : '+0700' }}<br>
+					Event Date: {{ schedule.event_date | date: 'medium' : '+0700' }}<br>
 					<br>
 					Description: {{ schedule.text_field }}
 					<br>

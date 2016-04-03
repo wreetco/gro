@@ -181,7 +181,7 @@ angular.module('starter.controllers', [])
 }) // end plantsctrl
 
 // plant view control
-.controller('PlantViewCtrl', function($rootScope, $scope, $stateParams, $state, Plants, SessionService, PopupService) {
+.controller('PlantViewCtrl', function($rootScope, $scope, $stateParams, $state, Plants, SessionService, PopupService, $ionicSlideBoxDelegate) {
   Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
     console.log("Plants list");
     console.log(plant);
