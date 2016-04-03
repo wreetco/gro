@@ -98,7 +98,7 @@ angular.module('starter.services', [])
         var plants = [];
         var plants_noformat = [];
         var row = [];
-        for (var i = 0; i < data.length; i++) {		
+        for (var i = 0; i < data.length; i++) {
           plants_noformat.push(data[i]);
           if (i == data.length - 1) {
             row.push(data[i]);
@@ -114,26 +114,11 @@ angular.module('starter.services', [])
             row.push(data[i]);
           }
         }
-        // now that we have a list of plants lets get the notifications for each
-        Notifications.all().then(function(notifications) {
-          // we need to go through each plant, and collect their notifications
-          console.log(notifications);
-          for (plant of plants_noformat) {
-            // each one needs an array of them
-            plant.notifications = [];
-            for (n of notifications) {
-              if (!n.plant_id)
-                continue;
-              if (n.plant_id.$oid === plant._id.$oid)
-                plant.notifications.push(n);
-              // done
-            }
-          } // end plant iteration
-					$scope.plants = plants;
-					$scope.plants_noformat = plants_noformat;
-					d.resolve(plants_noformat);
-        }); // end get notifications
+        d.resolve(plants_noformat);
+        $scope.plants = plants;
+        $scope.plants_noformat = plants_noformat;
       });
+
 			return d.promise;
     }, // end all method
 
@@ -153,6 +138,7 @@ angular.module('starter.services', [])
       var d = $q.defer();
       var plant;
       $http.get("https://grast.wreet.co/" + grow_id + "/plants/" + plant_id).success(function(data, status) {
+        /*
         Notifications.all().then(function(notifications) {
           // we need to go through each plant, and collect their notifications
           data.notifications = [];
@@ -165,6 +151,7 @@ angular.module('starter.services', [])
           }
 
         }); // end get notifications
+        */
         d.resolve(data);
       });
       return d.promise;
@@ -211,14 +198,14 @@ angular.module('starter.services', [])
 	return {
     all: function($scope, grow_id) {
 			var d = $q.defer();
-			
+
       $http.get('https://grast.wreet.co/' + grow_id + '/equipment').success(function(data, status) {
   			$scope.equipment = data;
   			console.log('we did it, hopefully');
   			console.log(data);
 				d.resolve(data);
     	});
-			
+
 			return d.promise;
     },
 
