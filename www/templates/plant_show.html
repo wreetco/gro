@@ -14,9 +14,11 @@
       </div>
 
       <div class="item item-dark item-body" style="padding-top: 0 !important; margin-top: 0;">
-        <p class="center-text plant-cover-img" style="background-repeat: no-repeat; margin-top: 0; background-position: center center; height: 50vh; background-image: url(https://grast.wreet.co/{{ (plant.journals[0].pictures[0]) ? plant.journals[0].pictures[0] : 'assets/mj_grey.png'; }}); {{ (!plant.journals[0].pictures[0]) ? 'background-size: cover' : null; }}">
-					&nbsp;
-        </p>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+          <ion-slide class="plant_img" ng-repeat="pic in plant.journals[0].pictures">
+            <img src="https://grast.wreet.co/{{ pic }}" />
+          </ion-slide>
+        </ion-slide-box>
 				<p>
 				 {{ plant.description }}
 				</p>

@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
     // code to run each time view is entered
 		Plants.all($scope, SessionService.get('grow_id'));
 	});
-	
+
   if (!$scope.plants)
 		Plants.all($scope, SessionService.get('grow_id'));
   $rootScope.$plant_scope = $scope;
@@ -183,6 +183,7 @@ angular.module('starter.controllers', [])
 // plant view control
 .controller('PlantViewCtrl', function($rootScope, $scope, $stateParams, $state, Plants, SessionService, PopupService) {
   Plants.get(SessionService.get('grow_id'), $stateParams.plant_id).then(function(plant) {
+    console.log("Plants list");
     console.log(plant);
     $scope.plant = plant;
   });
@@ -216,7 +217,7 @@ angular.module('starter.controllers', [])
   if (!$scope.equipment)
 		Equipment.all($scope, SessionService.get('grow_id'));
   $rootScope.$equipment_scope = $scope;
-	
+
 	//$scope.equipment = Equipment.all($scope, SessionService.get('grow_id'));
 	//$rootScope.$equipment = $scope;
 	// update view
@@ -224,7 +225,7 @@ angular.module('starter.controllers', [])
     $scope.equipment = Equipment.all($scope);
     $scope.$broadcast('scroll.refreshComplete');
 	}
-	
+
 	 // add a plant
   $scope.new_equipment = {};
   $scope.saveEquipment = function() {
@@ -247,7 +248,7 @@ angular.module('starter.controllers', [])
   //  console.log("Controller equipment remove");
 	//	Equipment.remove(SessionService.get('grow_id'), $stateParams.equipment_id);
   //} // end remove method
-	
+
 	$scope.remove = function() {
     var confirm = PopupService.confirm('Delete Equipment', 'Are you sure you want to delete this equipment? This cannot be undone.');
     confirm.then(function(res) {
@@ -265,7 +266,7 @@ angular.module('starter.controllers', [])
      } // end if/else
    }); // end confirm promise handling
   } // end remove
-	
+
 })
 
 

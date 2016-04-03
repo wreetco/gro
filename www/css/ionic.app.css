@@ -143,6 +143,9 @@ textarea.dark {
 .plant-footer a:last-child {
   float: right; }
 
+.plant_img img {
+  height: 50vh; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
